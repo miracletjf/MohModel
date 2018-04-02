@@ -1,0 +1,829 @@
+@charset "utf-8";
+/**------双斜杠单行注释是错的，不能用 ----------**/
+
+/*常用变量*/
+@mainColor: #5296b1;
+@subColor: #377892;
+@subColor2: #67a0b7;
+@fontSize1: 14px;
+@fontSize2: 15px;
+@fontSize3: 16px;
+
+/*常用功能函数*/
+.background-gradient(@topColor: #5bc0de,@backColor: #2f96b4,@bgColor: #49afcd){
+  background-color: @bgColor;
+  background-image: -moz-linear-gradient(top, @topColor, @backColor);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@topColor), to(@backColor));
+  background-image: -webkit-linear-gradient(top, @topColor, @backColor);
+  background-image: -o-linear-gradient(top, @topColor, @backColor);
+  background-image: linear-gradient(to bottom, @topColor, @backColor);
+  background-repeat: repeat-x;
+  @topColor2: Replace(@topColor,"#","#ff");
+  @backColor2: Replace(@backColor,"#","#ff");
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{topColor2}', endColorstr='@{backColor2}', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+/* 整体body体默认设置风格 */
+body, html {
+  -webkit-text-size-adjust: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+}
+
+* {
+  text-decoration: none;
+  list-style: none;
+  color: #333;
+  font-size: 13px;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+img, select {
+  border: none;
+}
+
+ul, li, dl, dd, dt, p, ol, h1, h2, h3, h4, h5 {
+  font-size: 12px;
+  font-weight: 100;
+  padding: 0;
+  margin: 0;
+}
+
+form {
+  margin: 0;
+  padding-bottom: 1px;
+}
+
+.wrap {
+  margin: 0 auto;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.index {
+  overflow: hidden;
+}
+
+.clr {
+  clear: both;
+  height: 0px;
+  width: 100%;
+  font-size: 1px;
+  line-height: 0px;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+a, input, button {
+  outline: none;
+}
+
+::-moz-focus-inner {
+  border: 0px;
+}
+
+a {
+  color: #333;
+}
+
+.wrapper {
+  clear: both;
+  width: 100%;
+}
+
+/*默认滚动条样式修改ie9 google Firefox 等高版本浏览器有效*/
+::selection {
+  background: #D03333;
+  color: white;
+  text-shadow: none;
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar
+{
+  width: 8px;
+  height: 1px;
+}
+/*定义滚动条按钮*/
+::-webkit-scrollbar-button {
+  display: none;
+  border-radius: 8px;
+}
+  /*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  background: #EDEDED;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+  border-radius: 8px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: #848484;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+
+/*无样式*/
+.pg_none {
+}
+
+/*水平分割线样式*/
+.pg_horizon {
+  background: #ff861a;
+  height: 2px;
+}
+
+/*页面框架样式*/
+.pg_iframe_query {
+  width: 100%;
+  height: 300px;
+}
+
+/*页面输入元素样式*/
+.pg_input {
+}
+
+.pg_input_text {
+  border: 1px #d3d3d3 solid;
+  width: 160px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+}
+
+.pg_input_password {
+  border: 1px #d3d3d3 solid;
+  width: 160px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+}
+
+.pg_input_textarea {
+}
+
+.pg_input_select {
+  border: 1px #d3d3d3 solid;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+}
+
+/*页面buton按钮样式*/
+.pg_button {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 4px 7px;
+  margin: 2px 4px;
+  line-height: 15px;
+  font-size: 13px;
+  text-indent: 4px;
+  letter-spacing: 4px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid;
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  .background-gradient();
+}
+
+input[type="button"] {
+  cursor: pointer;
+}
+
+input[type="button"]:disabled {
+  background: #909090 !important;
+  color: #fff !important;
+  cursor: not-allowed !important;
+  border-color: #eee!important;
+}
+
+/*页面超链接样式*/
+.pg_a {
+  color: #ff861a;
+}
+
+.pg_a:link {
+  color: #ff861a;;
+  text-decoration: none;
+}
+
+.pg_a:hover {
+  color: #ff861a;
+  text-decoration: underline;
+}
+
+.pg_a:visited {
+  color: #ff861a;
+
+  text-decoration: none;
+}
+
+/*选择下拉控件样式 */
+.selectText_link {
+  background-color: #FFFFFF;
+  padding: 2px 6px 2px 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.selectText_link_over {
+  background-color: #E8F2FE;
+  padding: 2px 6px 2px 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/*签名文本框样式 */
+.signText {
+  border: #000000 0 solid;
+  text-align: left;
+  width: 80px;
+}
+
+/********************************************************
+ *  静态Tree的样式 延用以前的
+ *******************************************************/
+/* 树节点的样式 */
+.PG_STREE_ITEM {
+  background: transparent;
+  font-size: 12px;
+}
+
+/* 树节点鼠标滑过的样式 */
+.PG_STREE_ITEM_MOUSEOVER {
+  background: #ccffff;
+  font-size: 12px;
+}
+
+/* 树节点中链接的样式 */
+.PG_STREE_LINK {
+  text-decoration: none;
+  color: black;
+}
+
+/* 三态复选框的样式  */
+.PG_STREE_T_CHECKBOX {
+  cursor: default;
+  margin: 0 2px;
+  height: 14px;
+  width: 14px;
+}
+
+
+/* region 新增和编辑界面的样式 pg_add */
+
+table.pg_add {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 1px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.pg_add {
+  td {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 4px;
+    height: 36px;
+    line-height: 36px;
+    font-size: @fontSize3;
+    cursor: default;
+    div {
+      font-size: @fontSize3;
+    }
+    a {
+      color: #04c;
+      font-size: @fontSize3;
+    }
+  }
+
+  /* 标题样式  */
+  .pg_add_title,.pg_add_title_sub {
+    padding: 2px 15px;
+    height: 30px;
+    line-height: 30px;
+    color: #333;
+    font-weight: bold;
+    font-size: @fontSize1;
+    text-indent: 3px;
+    border-bottom: 1px solid #ddd;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    .background-gradient(#f5f5f5,#e8e8e8,#f5f5f5);
+  }
+  /* 字段label样式  */
+  .pg_add_head {
+    HEIGHT: 30px;
+    line-height: 30px;
+    COLOR: #000;
+    font-size: @fontSize1;
+    text-align: right;
+    text-indent: 3px;
+    border-bottom: solid 1px #eee;
+  }
+  /* 字段input样式  */
+  .pg_add_content {
+    height: 36px;
+    line-height: 36px;
+    font-size: @fontSize1;
+    text-decoration: none;
+    border-bottom: solid 1px #eee;
+
+    /*输入框样式*/
+    input[type="text"],select {
+      display: inline-block;
+      box-sizing: border-box;
+      width: 180px;
+      padding-left: 4px;
+      font-size: @fontSize1;
+      height: 24px;
+      line-height: 24px;
+      border: solid 1px #ccc;
+    }
+  }
+
+  /* 底部操作行样式  */
+  .pg_add_bottom {
+    BACKGROUND: #fff;
+    COLOR: #000;
+    text-align: right;
+    cursor: default;
+    text-decoration: none;
+    text-indent: 3px;
+    font-size: @fontSize1;
+    td {
+      font-size: @fontSize1;
+      vertical-align: bottom;
+    }
+  }
+  /*a按钮样式*/
+  input[type="button"] {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 4px 7px;
+    margin: 2px 4px;
+    line-height: 15px;
+    font-size: 13px;
+    text-indent: 4px;
+    letter-spacing: 4px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border: 1px solid;
+    border-color: #2f96b4 #2f96b4 #1f6377;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    .background-gradient();
+  }
+  /* 字段提示信息样式  */
+  .pg_add_tip {
+    font-size: 12px;
+    color: red
+  }
+  /* 整体提示信息样式  */
+  .pg_add_hint {
+    BACKGROUND-color: #f9f9f9;
+    padding-left: 6px;
+    color: red
+  }
+}
+/* endregion */
+
+/*region 查询条件界面的样式 pg_query*/
+
+table.pg_query {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.pg_query {
+  tr {
+    box-sizing: border-box;
+  }
+  td {
+    box-sizing: border-box;
+    padding: 0 4px;
+    height: 36px;
+    line-height: 36px;
+    font-size: @fontSize1;
+    cursor: default;
+    a {
+      font-size: @fontSize1;
+    }
+  }
+
+  .pg_query_title {
+    padding: 2px 15px;
+    height: 30px;
+    line-height: 30px;
+    color: #333;
+    font-weight: bold;
+    font-size: @fontSize1;
+    text-indent: 3px;
+    border-bottom: 1px solid #ddd;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    .background-gradient(#f5f5f5,#e8e8e8,#f5f5f5);
+  }
+  /* 标题行样式  */
+  .pg_query_head {
+    font-size: @fontSize1;
+    COLOR: #000;
+    text-align: right;
+    text-decoration: none;
+    text-indent: 3px;
+    cursor: default;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #f4f4f4;
+    td {
+      font-size: @fontSize1;
+    }
+  }
+
+  .pg_query_content {
+    height: 36px;
+    line-height: 36px;
+    font-size: @fontSize1;
+    border-bottom: 1px solid #f4f4f4;
+    /* 字段input样式  */
+    input[type="text"], select {
+      display: inline-block;
+      box-sizing: border-box;
+      width: 180px;
+      padding-left: 4px;
+      font-size: @fontSize1;
+      height: 24px;
+      line-height: 24px;
+      border: solid 1px #ccc;
+    }
+  }
+
+  /* 底部操作行样式  */
+  .pg_query_bottom {
+    height: 34px;
+    line-height: 34px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ffffff;
+    td {
+      font-size: @fontSize1;
+      vertical-align: bottom;
+    }
+  }
+
+  /*按钮样式*/
+  input[type="button"] {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 4px 7px;
+    margin: 2px 4px;
+    line-height: 15px;
+    font-size: 13px;
+    text-indent: 4px;
+    letter-spacing: 4px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border: 1px solid;
+    border-color: #2f96b4 #2f96b4 #1f6377;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    .background-gradient();
+  }
+}
+
+/*endregion*/
+
+/*region 查询结果界面的样式 pg_result*/
+
+table.pg_result {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.pg_result {
+  tr {
+    box-sizing: border-box;
+  }
+  td {
+    box-sizing: border-box;
+    padding: 0 4px;
+    height: 36px;
+    line-height: 24px;
+    font-size: @fontSize1;
+    cursor: default;
+    a {
+      font-size: @fontSize1;
+    }
+  }
+  /*表格头部说明*/
+  .pg_result_title {
+    padding: 2px 15px;
+    height: 30px;
+    line-height: 30px;
+    color: #333;
+    font-weight: bold;
+    font-size: @fontSize1;
+    text-indent: 3px;
+    border-bottom: 1px solid #ddd;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    .background-gradient(#f5f5f5,#e8e8e8,#f5f5f5);
+    a {
+      color: #ffb644;
+    }
+  }
+  /* 字段行样式  */
+  .pg_result_head {
+    height: 34px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f4f4f4;
+    td {
+      font-size: @fontSize1;
+      vertical-align: bottom;
+      border-bottom: 2px solid #ddd;
+    }
+  }
+  /* 内容行样式  */
+  .pg_result_content_, .pg_result_content, .pg_result_content_odd, .pg_result_content_onmouseover, .onmouseover {
+    height: 36px;
+    line-height: 24px;
+    font-size: @fontSize1;
+    border-bottom: 1px solid #f4f4f4;
+    text-decoration: none;
+    td {
+      color: @subColor;
+      a {
+        color: @subColor;
+      }
+    }
+  }
+  /*内容行，奇数*/
+  .pg_result_content_,.pg_result_content_odd {
+    background: #f5f5f5;
+  }
+  /*内容行，偶数*/
+  .pg_result_content {
+    background: #fff;
+  }
+  /*内容行，鼠标经过样式*/
+  .pg_result_content_onmouseover,.onmouseover {
+    color: #fff;
+    background: @subColor2;
+    td{
+      color: #fff;
+      a {
+        color: #fff;
+        &:hover {
+          color: #fff;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  /* 底部样式  */
+  .pg_result_bottom {
+    BACKGROUND: #fff;
+    COLOR: #000;
+    text-align: right;
+    cursor: default;
+    text-decoration: none;
+    text-indent: 3px;
+    td {
+      padding: 6px 0;
+    }
+  }
+
+  /* 表格button样式 */
+  input[type="button"] {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 4px 7px;
+    margin: 2px 4px;
+    line-height: 15px;
+    font-size: 13px;
+    text-indent: 4px;
+    letter-spacing: 4px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border: 1px solid;
+    border-color: #2f96b4 #2f96b4 #1f6377;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    .background-gradient();
+  }
+
+
+}
+
+/* endregion */
+
+/* region 查看界面的样式 pg_view */
+table.pg_view {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.pg_view {
+  tr {
+    background: #fff;
+    &:nth-child(2n+1) {
+      background: #f5f5f5;
+    }
+  }
+  td {
+    box-sizing: border-box;
+    padding: 0 4px;
+    height: 36px;
+    line-height: 24px;
+    font-size: @fontSize1;
+    cursor: default;
+    a {
+      font-size: @fontSize1;
+    }
+  }
+  /* 标题行样式  */
+  .pg_view_title,.pg_view_title_sub {
+    padding: 2px 15px;
+    height: 30px;
+    line-height: 30px;
+    color: #333;
+    font-weight: bold;
+    font-size: @fontSize1;
+    text-indent: 3px;
+    border-bottom: 1px solid #ddd;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    .background-gradient(#f5f5f5,#e8e8e8,#f5f5f5);
+  }
+  /* 字段label样式  */
+  .pg_view_head {
+    font-size: @fontSize1;
+    COLOR: #000;
+    text-align: right;
+    text-decoration: none;
+    text-indent: 3px;
+    cursor: default;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #f4f4f4;
+    td {
+      font-size: @fontSize1;
+    }
+  }
+  /* 字段内容样式  */
+  .pg_view_content {
+    height: 36px;
+    line-height: 36px;
+    font-size: @fontSize1;
+    border-bottom: 1px solid #f4f4f4;
+    text-decoration: none;
+  }
+
+  /* 底部样式  */
+  .pg_view_bottom {
+    height: 34px;
+    line-height: 34px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ffffff;
+    cursor: default;
+    td {
+      font-size: @fontSize1;
+      vertical-align: bottom;
+    }
+  }
+  /*input按钮样式*/
+  input[type="button"] {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 4px 7px;
+    margin: 2px 4px;
+    line-height: 15px;
+    font-size: 13px;
+    text-indent: 4px;
+    letter-spacing: 4px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border: 1px solid;
+    border-color: #2f96b4 #2f96b4 #1f6377;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    .background-gradient();
+  }
+}
+
+/* endregion */
+
+
+/*增加的样式 --tjf*/
+.m-td-ac {
+  border-top: solid 1px #0063a6;
+}
+
+.fieldset3 {
+  margin: 4px 2px;
+  padding: 4px;
+  border: 1px solid #0066cc;
+}
+
+.fieldset3 .legend {
+  margin-top: 4px;
+}
+
+.fieldset3 .font3 {
+  color: #0066cc;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.fieldset3 .font4 {
+  color: #0066cc;
+  font-size: 13px;
+}
+
+/*表格中的表格*/
+.tb-head {
+  background: #c4d2da !important;
+}
+
+.tb-head td {
+  font-size: 13px;
+  line-height: 30px;
+  height: 30px;
+  border: 1px solid #eee;
+  text-align: center;
+}
+
+.tb-tr () {
+  background: #fbf9f5 !important;
+}

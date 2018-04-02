@@ -1,0 +1,826 @@
+@charset "utf-8";
+/**------双斜杠单行注释是错的，不能用 ----------**/
+/*常用变量*/
+/*常用功能函数*/
+/* 整体body体默认设置风格 */
+body,
+html {
+  -webkit-text-size-adjust: none;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+}
+* {
+  text-decoration: none;
+  list-style: none;
+  color: #333;
+  font-size: 13px;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+img,
+select {
+  border: none;
+}
+ul,
+li,
+dl,
+dd,
+dt,
+p,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-size: 12px;
+  font-weight: 100;
+  padding: 0;
+  margin: 0;
+}
+form {
+  margin: 0;
+  padding-bottom: 1px;
+}
+.wrap {
+  margin: 0 auto;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.index {
+  overflow: hidden;
+}
+.clr {
+  clear: both;
+  height: 0px;
+  width: 100%;
+  font-size: 1px;
+  line-height: 0px;
+  visibility: hidden;
+  overflow: hidden;
+}
+.pointer {
+  cursor: pointer;
+}
+a,
+input,
+button {
+  outline: none;
+}
+::-moz-focus-inner {
+  border: 0px;
+}
+a {
+  color: #333;
+}
+.wrapper {
+  clear: both;
+  width: 100%;
+}
+/*默认滚动条样式修改ie9 google Firefox 等高版本浏览器有效*/
+::selection {
+  background: #D03333;
+  color: white;
+  text-shadow: none;
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 1px;
+}
+/*定义滚动条按钮*/
+::-webkit-scrollbar-button {
+  display: none;
+  border-radius: 8px;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background: #EDEDED;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #848484;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+/*无样式*/
+/*水平分割线样式*/
+.pg_horizon {
+  background: #ff861a;
+  height: 2px;
+}
+/*页面框架样式*/
+.pg_iframe_query {
+  width: 100%;
+  height: 300px;
+}
+/*页面输入元素样式*/
+.pg_input_text {
+  border: 1px #d3d3d3 solid;
+  width: 160px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+}
+.pg_input_password {
+  border: 1px #d3d3d3 solid;
+  width: 160px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+}
+.pg_input_select {
+  border: 1px #d3d3d3 solid;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+}
+/*页面buton按钮样式*/
+.pg_button {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 4px 7px;
+  margin: 2px 4px;
+  line-height: 15px;
+  font-size: 13px;
+  text-indent: 4px;
+  letter-spacing: 4px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid;
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background-color: #49afcd;
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+input[type="button"] {
+  cursor: pointer;
+}
+input[type="button"]:disabled {
+  background: #909090 !important;
+  color: #fff !important;
+  cursor: not-allowed !important;
+  border-color: #eee!important;
+}
+/*页面超链接样式*/
+.pg_a {
+  color: #ff861a;
+}
+.pg_a:link {
+  color: #ff861a;
+  text-decoration: none;
+}
+.pg_a:hover {
+  color: #ff861a;
+  text-decoration: underline;
+}
+.pg_a:visited {
+  color: #ff861a;
+  text-decoration: none;
+}
+/*选择下拉控件样式 */
+.selectText_link {
+  background-color: #FFFFFF;
+  padding: 2px 6px 2px 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.selectText_link_over {
+  background-color: #E8F2FE;
+  padding: 2px 6px 2px 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+/*签名文本框样式 */
+.signText {
+  border: #000000 0 solid;
+  text-align: left;
+  width: 80px;
+}
+/********************************************************
+ *  静态Tree的样式 延用以前的
+ *******************************************************/
+/* 树节点的样式 */
+.PG_STREE_ITEM {
+  background: transparent;
+  font-size: 12px;
+}
+/* 树节点鼠标滑过的样式 */
+.PG_STREE_ITEM_MOUSEOVER {
+  background: #ccffff;
+  font-size: 12px;
+}
+/* 树节点中链接的样式 */
+.PG_STREE_LINK {
+  text-decoration: none;
+  color: black;
+}
+/* 三态复选框的样式  */
+.PG_STREE_T_CHECKBOX {
+  cursor: default;
+  margin: 0 2px;
+  height: 14px;
+  width: 14px;
+}
+/* region 新增和编辑界面的样式 pg_add */
+table.pg_add {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 1px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.pg_add {
+  /* 标题样式  */
+  /* 字段label样式  */
+  /* 字段input样式  */
+  /* 底部操作行样式  */
+  /*a按钮样式*/
+  /* 字段提示信息样式  */
+  /* 整体提示信息样式  */
+}
+.pg_add td {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 4px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 16px;
+  cursor: default;
+}
+.pg_add td div {
+  font-size: 16px;
+}
+.pg_add td a {
+  color: #04c;
+  font-size: 16px;
+}
+.pg_add .pg_add_title,
+.pg_add .pg_add_title_sub {
+  padding: 2px 15px;
+  height: 30px;
+  line-height: 30px;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  text-indent: 3px;
+  border-bottom: 1px solid #ddd;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(#e8e8e8));
+  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.pg_add .pg_add_head {
+  HEIGHT: 30px;
+  line-height: 30px;
+  COLOR: #000;
+  font-size: 14px;
+  text-align: right;
+  text-indent: 3px;
+  border-bottom: solid 1px #eee;
+}
+.pg_add .pg_add_content {
+  height: 36px;
+  line-height: 36px;
+  font-size: 14px;
+  text-decoration: none;
+  border-bottom: solid 1px #eee;
+  /*输入框样式*/
+}
+.pg_add .pg_add_content input[type="text"],
+.pg_add .pg_add_content select {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 180px;
+  padding-left: 4px;
+  font-size: 14px;
+  height: 24px;
+  line-height: 24px;
+  border: solid 1px #ccc;
+}
+.pg_add .pg_add_bottom {
+  BACKGROUND: #fff;
+  COLOR: #000;
+  text-align: right;
+  cursor: default;
+  text-decoration: none;
+  text-indent: 3px;
+  font-size: 14px;
+}
+.pg_add .pg_add_bottom td {
+  font-size: 14px;
+  vertical-align: bottom;
+}
+.pg_add input[type="button"] {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 4px 7px;
+  margin: 2px 4px;
+  line-height: 15px;
+  font-size: 13px;
+  text-indent: 4px;
+  letter-spacing: 4px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid;
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background-color: #49afcd;
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.pg_add .pg_add_tip {
+  font-size: 12px;
+  color: red;
+}
+.pg_add .pg_add_hint {
+  BACKGROUND-color: #f9f9f9;
+  padding-left: 6px;
+  color: red;
+}
+/* endregion */
+/*region 查询条件界面的样式 pg_query*/
+table.pg_query {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.pg_query {
+  /* 标题行样式  */
+  /* 底部操作行样式  */
+  /*按钮样式*/
+}
+.pg_query tr {
+  box-sizing: border-box;
+}
+.pg_query td {
+  box-sizing: border-box;
+  padding: 0 4px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 14px;
+  cursor: default;
+}
+.pg_query td a {
+  font-size: 14px;
+}
+.pg_query .pg_query_title {
+  padding: 2px 15px;
+  height: 30px;
+  line-height: 30px;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  text-indent: 3px;
+  border-bottom: 1px solid #ddd;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(#e8e8e8));
+  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.pg_query .pg_query_head {
+  font-size: 14px;
+  COLOR: #000;
+  text-align: right;
+  text-decoration: none;
+  text-indent: 3px;
+  cursor: default;
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid #f4f4f4;
+}
+.pg_query .pg_query_head td {
+  font-size: 14px;
+}
+.pg_query .pg_query_content {
+  height: 36px;
+  line-height: 36px;
+  font-size: 14px;
+  border-bottom: 1px solid #f4f4f4;
+  /* 字段input样式  */
+}
+.pg_query .pg_query_content input[type="text"],
+.pg_query .pg_query_content select {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 180px;
+  padding-left: 4px;
+  font-size: 14px;
+  height: 24px;
+  line-height: 24px;
+  border: solid 1px #ccc;
+}
+.pg_query .pg_query_bottom {
+  height: 34px;
+  line-height: 34px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ffffff;
+}
+.pg_query .pg_query_bottom td {
+  font-size: 14px;
+  vertical-align: bottom;
+}
+.pg_query input[type="button"] {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 4px 7px;
+  margin: 2px 4px;
+  line-height: 15px;
+  font-size: 13px;
+  text-indent: 4px;
+  letter-spacing: 4px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid;
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background-color: #49afcd;
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+/*endregion*/
+/*region 查询结果界面的样式 pg_result*/
+table.pg_result {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.pg_result {
+  /*表格头部说明*/
+  /* 字段行样式  */
+  /* 内容行样式  */
+  /*内容行，奇数*/
+  /*内容行，偶数*/
+  /*内容行，鼠标经过样式*/
+  /* 底部样式  */
+  /* 表格button样式 */
+}
+.pg_result tr {
+  box-sizing: border-box;
+}
+.pg_result td {
+  box-sizing: border-box;
+  padding: 0 4px;
+  height: 36px;
+  line-height: 24px;
+  font-size: 14px;
+  cursor: default;
+}
+.pg_result td a {
+  font-size: 14px;
+}
+.pg_result .pg_result_title {
+  padding: 2px 15px;
+  height: 30px;
+  line-height: 30px;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  text-indent: 3px;
+  border-bottom: 1px solid #ddd;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(#e8e8e8));
+  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.pg_result .pg_result_title a {
+  color: #ffb644;
+}
+.pg_result .pg_result_head {
+  height: 34px;
+  line-height: 30px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f4f4f4;
+}
+.pg_result .pg_result_head td {
+  font-size: 14px;
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+.pg_result .pg_result_content_,
+.pg_result .pg_result_content,
+.pg_result .pg_result_content_odd,
+.pg_result .pg_result_content_onmouseover,
+.pg_result .onmouseover {
+  height: 36px;
+  line-height: 24px;
+  font-size: 14px;
+  border-bottom: 1px solid #f4f4f4;
+  text-decoration: none;
+}
+.pg_result .pg_result_content_ td,
+.pg_result .pg_result_content td,
+.pg_result .pg_result_content_odd td,
+.pg_result .pg_result_content_onmouseover td,
+.pg_result .onmouseover td {
+  color: #377892;
+}
+.pg_result .pg_result_content_ td a,
+.pg_result .pg_result_content td a,
+.pg_result .pg_result_content_odd td a,
+.pg_result .pg_result_content_onmouseover td a,
+.pg_result .onmouseover td a {
+  color: #377892;
+}
+.pg_result .pg_result_content_,
+.pg_result .pg_result_content_odd {
+  background: #f5f5f5;
+}
+.pg_result .pg_result_content {
+  background: #fff;
+}
+.pg_result .pg_result_content_onmouseover,
+.pg_result .onmouseover {
+  color: #fff;
+  background: #67a0b7;
+}
+.pg_result .pg_result_content_onmouseover td,
+.pg_result .onmouseover td {
+  color: #fff;
+}
+.pg_result .pg_result_content_onmouseover td a,
+.pg_result .onmouseover td a {
+  color: #fff;
+}
+.pg_result .pg_result_content_onmouseover td a:hover,
+.pg_result .onmouseover td a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.pg_result .pg_result_bottom {
+  BACKGROUND: #fff;
+  COLOR: #000;
+  text-align: right;
+  cursor: default;
+  text-decoration: none;
+  text-indent: 3px;
+}
+.pg_result .pg_result_bottom td {
+  padding: 6px 0;
+}
+.pg_result input[type="button"] {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 4px 7px;
+  margin: 2px 4px;
+  line-height: 15px;
+  font-size: 13px;
+  text-indent: 4px;
+  letter-spacing: 4px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid;
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background-color: #49afcd;
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+/* endregion */
+/* region 查看界面的样式 pg_view */
+table.pg_view {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.pg_view {
+  /* 标题行样式  */
+  /* 字段label样式  */
+  /* 字段内容样式  */
+  /* 底部样式  */
+  /*input按钮样式*/
+}
+.pg_view tr {
+  background: #fff;
+}
+.pg_view tr:nth-child(2n+1) {
+  background: #f5f5f5;
+}
+.pg_view td {
+  box-sizing: border-box;
+  padding: 0 4px;
+  height: 36px;
+  line-height: 24px;
+  font-size: 14px;
+  cursor: default;
+}
+.pg_view td a {
+  font-size: 14px;
+}
+.pg_view .pg_view_title,
+.pg_view .pg_view_title_sub {
+  padding: 2px 15px;
+  height: 30px;
+  line-height: 30px;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  text-indent: 3px;
+  border-bottom: 1px solid #ddd;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f5f5), to(#e8e8e8));
+  background-image: -webkit-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: -o-linear-gradient(top, #f5f5f5, #e8e8e8);
+  background-image: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.pg_view .pg_view_head {
+  font-size: 14px;
+  COLOR: #000;
+  text-align: right;
+  text-decoration: none;
+  text-indent: 3px;
+  cursor: default;
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid #f4f4f4;
+}
+.pg_view .pg_view_head td {
+  font-size: 14px;
+}
+.pg_view .pg_view_content {
+  height: 36px;
+  line-height: 36px;
+  font-size: 14px;
+  border-bottom: 1px solid #f4f4f4;
+  text-decoration: none;
+}
+.pg_view .pg_view_bottom {
+  height: 34px;
+  line-height: 34px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ffffff;
+  cursor: default;
+}
+.pg_view .pg_view_bottom td {
+  font-size: 14px;
+  vertical-align: bottom;
+}
+.pg_view input[type="button"] {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 4px 7px;
+  margin: 2px 4px;
+  line-height: 15px;
+  font-size: 13px;
+  text-indent: 4px;
+  letter-spacing: 4px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid;
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background-color: #49afcd;
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+/* endregion */
+/*增加的样式 --tjf*/
+.m-td-ac {
+  border-top: solid 1px #0063a6;
+}
+.fieldset3 {
+  margin: 4px 2px;
+  padding: 4px;
+  border: 1px solid #0066cc;
+}
+.fieldset3 .legend {
+  margin-top: 4px;
+}
+.fieldset3 .font3 {
+  color: #0066cc;
+  font-size: 14px;
+  font-weight: bold;
+}
+.fieldset3 .font4 {
+  color: #0066cc;
+  font-size: 13px;
+}
+/*表格中的表格*/
+.tb-head {
+  background: #c4d2da !important;
+}
+.tb-head td {
+  font-size: 13px;
+  line-height: 30px;
+  height: 30px;
+  border: 1px solid #eee;
+  text-align: center;
+}

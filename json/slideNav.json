@@ -1,0 +1,16 @@
+[
+  {"name": "菜单1级","href":"www.baidu.com", "sub":[
+    {"name":"菜单1-1级","href":"www.baidu.com"},
+    {"name":"菜单1-2级","href":"www.baidu.com"},
+    {"name":"菜单1-3级","href":"www.baidu.com"}
+  ]},
+  {"name": "菜单2级","href":"www.baidu.com"},
+  {"name": "菜单3级","href":"www.baidu.com","sub":[
+    {"name":"菜单3-1级","href":"www.baidu.com"},
+    {"name":"菜单3-2级","href":"www.baidu.com"},
+    {"name":"菜单3-3级","href":"www.baidu.com"}
+  ]},
+  {"name": "菜单4级","href":"www.baidu.com"},
+  {"name": "菜单5级","href":"www.baidu.com"},
+  {"name": "菜单6级","href":"www.baidu.com"}
+]
