@@ -5,108 +5,115 @@
     <link rel="stylesheet" href="../css/OHModel.css">
     <!-- 使用 -->
     <script type="text/javascript" src="../js/mTools.js"></script>
+    <script type="text/javascript" src="../plugIn/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/mToolsJQ.js"></script>
     <title>Title</title>
 </head>
-<body>
-<div class="wrap">
-    <div class="m-tab">
-        <ul class="tab-head" id="tab_head">
-            <li class="item">查询表格</li>
-            <li class="item">结果表格</li>
-            <li class="item">tab3</li>
-        </ul>
-        <ul class="tab-body" id="tab_body">
-            <li class="tab-box">
-                <table class="m-tb search">
-                    <tr class="tb-title">
-                        <td colspan="4">查询表格</td>
-                    </tr>
-                    <tr>
-                        <td class="tb-field-head">姓名</td>
-                        <td class="tb-field-content">
-                            <input type="text" value="tony" />
-                        </td>
-                        <td class="tb-field-head">性别</td>
-                        <td class="tb-field-content">
-                            <select name="sex" id="">
-                                <option value="male">男</option>
-                                <option value="female">女</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tb-field-head">年龄</td>
-                        <td class="tb-field-content"></td>
-                        <td class="tb-field-head">身高</td>
-                        <td class="tb-field-content"></td>
-                    </tr>
-                    <tr class="tb-bottom">
-                        <td colspan="4">
-                            <span>每页显示</span>
-                            <input type="text" class="page-num" value="10">
-                            <span>行数据</span>
-                            <button class="u-btn">查询</button>
-                            <button class="u-btn">重置</button>
-                            <button class="u-btn">返回</button>
-                        </td>
-                    </tr>
-                </table>
-            </li>
-            <li class="tab-box">
-                <table class="m-tb">
-                    <tr class="tb-title">
-                        <td colspan="5">
-                            默认表格
-                        </td>
-                    </tr>
-                    <tr class="tb-head">
-                        <td>id</td>
-                        <td>name</td>
-                        <td>sex</td>
-                        <td>age</td>
-                        <td>height</td>
-                    </tr>
-                    <tr class="tb-content odd">
-                        <td>1</td>
-                        <td>jhon</td>
-                        <td>male</td>
-                        <td>20</td>
-                        <td><a href="">操作</a></td>
-                    </tr>
-                    <tr class="tb-content">
-                        <td>2</td>
-                        <td>tom</td>
-                        <td>male</td>
-                        <td>22</td>
-                        <td><a href="">操作</a></td>
-                    </tr>
-                    <tr class="tb-content odd">
-                        <td>3</td>
-                        <td>mey</td>
-                        <td>female</td>
-                        <td>21</td>
-                        <td><a href="">操作</a></td>
-                    </tr>
-                    <tr class="tb-bottom">
-                        <td colspan="5">
-                            <span></span>
-                            <button class="u-btn">首页</button>
-                            <button class="u-btn" disabled>上页</button>
-                            <button class="u-btn">下页</button>
-                            <button class="u-btn">尾页</button>
-                            <input type="text" class="page-num" value="1" />
-                            <button class="u-btn">GO</button>
-                        </td>
-                    </tr>
-                </table>
-            </li>
-            <li class="tab-box"></li>
-        </ul>
+<body class="body-wrap">
+<div class="out-wrap">
+    <div class="wrap" id="scroll_wrap">
+        <div class="m-tab">
+            <ul class="tab-head" id="tab_head">
+                <li class="item">查询表格</li>
+                <li class="item">结果表格</li>
+                <li class="item">tab3</li>
+            </ul>
+            <ul class="tab-body" id="tab_body">
+                <li class="tab-box">
+                    <table class="m-tb search">
+                        <tr class="tb-title">
+                            <td colspan="4">查询表格</td>
+                        </tr>
+                        <tr>
+                            <td class="tb-field-head">姓名</td>
+                            <td class="tb-field-content">
+                                <input type="text" value="tony" />
+                            </td>
+                            <td class="tb-field-head">性别</td>
+                            <td class="tb-field-content">
+                                <select name="sex" id="">
+                                    <option value="male">男</option>
+                                    <option value="female">女</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tb-field-head">年龄</td>
+                            <td class="tb-field-content"></td>
+                            <td class="tb-field-head">身高</td>
+                            <td class="tb-field-content"></td>
+                        </tr>
+                        <tr class="tb-bottom">
+                            <td colspan="4">
+                                <span>每页显示</span>
+                                <input type="text" class="page-num" value="10">
+                                <span>行数据</span>
+                                <button class="u-btn">查询</button>
+                                <button class="u-btn">重置</button>
+                                <button class="u-btn">返回</button>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="tab-box">
+                    <table class="m-tb">
+                        <tr class="tb-title">
+                            <td colspan="5">
+                                默认表格
+                            </td>
+                        </tr>
+                        <tr class="tb-head">
+                            <td>id</td>
+                            <td>name</td>
+                            <td>sex</td>
+                            <td>age</td>
+                            <td>height</td>
+                        </tr>
+                        <tr class="tb-content odd">
+                            <td>1</td>
+                            <td>jhon</td>
+                            <td>male</td>
+                            <td>20</td>
+                            <td><a href="">操作</a></td>
+                        </tr>
+                        <tr class="tb-content">
+                            <td>2</td>
+                            <td>tom</td>
+                            <td>male</td>
+                            <td>22</td>
+                            <td><a href="">操作</a></td>
+                        </tr>
+                        <tr class="tb-content odd">
+                            <td>3</td>
+                            <td>mey</td>
+                            <td>female</td>
+                            <td>21</td>
+                            <td><a href="">操作</a></td>
+                        </tr>
+                        <tr class="tb-bottom">
+                            <td colspan="5">
+                                <span></span>
+                                <button class="u-btn">首页</button>
+                                <button class="u-btn" disabled>上页</button>
+                                <button class="u-btn">下页</button>
+                                <button class="u-btn">尾页</button>
+                                <input type="text" class="page-num" value="1" />
+                                <button class="u-btn">GO</button>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="tab-box"></li>
+            </ul>
+        </div>
     </div>
 </div>
 
 <script>
     window.onload = function () {
+        //隐藏滚动条辅助
+        var winWidth =  $(window).width();
+        $('#scroll_wrap').width(winWidth);
         //tab切换
         var tabDemo = new TabsChange('tab_head','tab_body');
         tabDemo.init();

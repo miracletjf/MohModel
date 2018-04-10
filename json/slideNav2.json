@@ -1,8 +1,8 @@
 [
   {"name": "nav1级","sub":[
     {"name":"菜单1-1级","href":"demo1.html"},
-    {"name":"菜单1-2级","href":"www.baidu.com"},
-    {"name":"菜单1-3级","href":"www.baidu.com"}
+    {"name":"菜单1-2级","href":"demo2.html"},
+    {"name":"菜单1-3级","href":"demo3.html"}
   ]},
   {"name": "nav2级","href":"www.baidu.com"},
   {"name": "nav3级","open":true,"sub":[

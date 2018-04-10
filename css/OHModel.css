@@ -1061,7 +1061,8 @@ h6,
   left: 200px;
   right: 0;
   bottom: 30px;
-  padding: 10px;
+  padding: 8px 5px;
+  overflow: hidden;
 }
 .g-bottom {
   position: absolute;
@@ -1073,6 +1074,17 @@ h6,
   line-height: 30px;
   text-align: right;
   color: #888;
+}
+.body-wrap {
+  overflow: hidden;
+}
+.out-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: -17px;
+  bottom: 0;
+  overflow: auto;
 }
 /*endregion*/
 /*region 按钮样式 u-btn*/
