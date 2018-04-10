@@ -1,0 +1,9 @@
+[
+  {"name":"粮食业务","url":"../json/slideNav2.json"},
+  {"name":"收购管理","url":"../json/slideNav2.json"},
+  {"name":"粮情监控","url":"../json/slideNav2.json"},
+  {"name":"应急管理","url":"../json/slideNav2.json"},
+  {"name":"查询管理","url":"../json/slideNav2.json"},
+  {"name":"系统管理","url":"../json/slideNav2.json"},
+  {"name":"内部管理","url":"../json/slideNav2.json"}
+]

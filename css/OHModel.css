@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*常用变量*/
 /*功能函数*/
-/*region 整体布局样式*/
+/*region 整体布局类*/
 html,
 body {
   margin: 0;
@@ -93,7 +93,7 @@ img {
   max-height: 100%;
 }
 /*endregion*/
-/*region 图标*/
+/*region 图标类 glyphicon*/
 @font-face {
   font-family: 'GlyphiconsHalflings';
   src: url('../fonts/glyphicons-halflings-regular.eot?t=15715716061');
@@ -713,7 +713,7 @@ img {
 }
 /*endregion*/
 /*region 辅助类样式 f*/
-.clear-b:after {
+.clear-fix:after {
   content: "";
   display: block;
   clear: both;
@@ -802,10 +802,71 @@ img {
   background-color: #777;
   border-radius: 10px;
 }
+mark {
+  padding: .2em;
+  color: #000;
+  background-color: #fcf8e3;
+}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1,
+.h1 {
+  font-size: 36px;
+}
+h2,
+.h2 {
+  font-size: 30px;
+}
+h3,
+.h3 {
+  font-size: 24px;
+}
+h4,
+.h4 {
+  font-size: 18px;
+}
+h5,
+.h5 {
+  font-size: 14px;
+}
+h6,
+.h6 {
+  font-size: 12px;
+}
+.text-lowercase {
+  text-transform: lowercase;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-capitalize {
+  text-transform: capitalize;
+}
 /*endregion*/
-/*排版布局样式*/
-.wrap {
-  margin: 0 auto;
+/*region 排版布局样式 g*/
+.wrap.open .g-left {
+  left: -200px;
+}
+.wrap.open .g-main {
+  left: 0;
+}
+.wrap.open .g-bottom {
+  left: 0;
 }
 .g-top {
   position: absolute;
@@ -831,17 +892,29 @@ img {
   cursor: pointer;
 }
 .g-top .m-nav {
-  margin-top: 10px;
+  margin-top: 15px;
+}
+.g-top .m-nav ul {
+  font-size: 0;
+}
+.g-top .m-nav ul li {
+  margin: 0 3px;
 }
 .g-top .m-nav .item {
   display: inline-block;
   padding: 0 10px;
-  line-height: 40px;
+  line-height: 30px;
   font-size: 1rem;
   color: #edf9ff;
+  cursor: pointer;
 }
 .g-top .m-nav .item:hover {
   color: #fff;
+}
+.g-top .m-nav .item.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
 }
 .g-top .m-user {
   position: relative;
@@ -910,9 +983,6 @@ img {
   border-right: solid 1px #eee;
   overflow: hidden;
 }
-.g-left.open {
-  left: -200px;
-}
 .g-left .m-left-nav {
   display: block;
   margin-right: -20px;
@@ -920,16 +990,70 @@ img {
   overflow-y: auto;
   background: #f2f2f2;
 }
+.g-left .m-left-nav .sub-nav {
+  background: #fff;
+  display: none;
+}
 .g-left .m-left-nav .item {
   display: block;
 }
 .g-left .m-left-nav .item a {
   display: block;
   font-size: 0.9375rem;
+  padding: 0 10px;
   line-height: 2.7;
   color: #555;
   background: #f8f8f8;
   border-bottom: solid 1px #eee;
+  cursor: pointer;
+}
+.g-left .m-left-nav .item a .glyphicon {
+  margin-right: 6px;
+}
+.g-left .m-left-nav .item:hover > a {
+  color: #438eb9;
+}
+.g-left .m-left-nav .item.active > a {
+  color: #438eb9;
+  background: #f8f8f8;
+}
+.g-left .m-left-nav .item.active .sub-nav {
+  max-height: 999px;
+}
+.g-left .m-left-nav .sub-item a {
+  position: relative;
+  padding: 0 10px;
+  padding-left: 30px;
+  line-height: 2.3;
+  border-bottom: dotted 1px #e4e4e4;
+  cursor: pointer;
+}
+.g-left .m-left-nav .sub-item a:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  width: 8px;
+  border-top: dashed 1px #999;
+}
+.g-left .m-left-nav .sub-item a:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 16px;
+  top: 2px;
+  bottom: 2px;
+  width: 1px;
+  border-left: dashed 1px #999;
+}
+.g-left .m-left-nav .sub-item.active a {
+  color: #438eb9;
+  background: #F5F7FA;
+}
+.g-left .m-left-nav .sub-item:hover a {
+  color: #438eb9;
+  background: #F1F5F9;
 }
 .g-main {
   position: absolute;
@@ -939,72 +1063,19 @@ img {
   bottom: 30px;
   padding: 10px;
 }
-.g-main.open {
-  left: 0;
-}
 .g-bottom {
   position: absolute;
   left: 200px;
   bottom: 0;
   right: 0;
+  padding: 0 20px;
   height: 30px;
+  line-height: 30px;
+  text-align: right;
+  color: #888;
 }
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: inherit;
-  font-weight: 500;
-  line-height: 1.1;
-  color: inherit;
-}
-h1,
-.h1 {
-  font-size: 36px;
-}
-h2,
-.h2 {
-  font-size: 30px;
-}
-h3,
-.h3 {
-  font-size: 24px;
-}
-h4,
-.h4 {
-  font-size: 18px;
-}
-h5,
-.h5 {
-  font-size: 14px;
-}
-h6,
-.h6 {
-  font-size: 12px;
-}
-mark {
-  padding: .2em;
-  color: #000;
-  background-color: #fcf8e3;
-}
-.text-lowercase {
-  text-transform: lowercase;
-}
-.text-uppercase {
-  text-transform: uppercase;
-}
-.text-capitalize {
-  text-transform: capitalize;
-}
-/*region 按钮样式*/
+/*endregion*/
+/*region 按钮样式 u-btn*/
 .u-btn,
 input[type="button"] {
   display: inline-block;
@@ -1060,7 +1131,8 @@ input[type="button"] .badge {
   background-color: #fff;
 }
 /*endregion*/
-/*region 表单样式*/
+/*region 表单样式 u-ipt*/
+.u-ipt,
 input[type="text"],
 select {
   display: inline-block;
@@ -1072,7 +1144,7 @@ select {
   border: solid 1px #ccc;
 }
 /*endregion*/
-/*region 表格样式*/
+/*region 表格样式 m-tb*/
 .m-tb {
   width: 100%;
   border-collapse: collapse;
@@ -1229,5 +1301,60 @@ select {
   text-decoration: underline;
 }
 /*endregion*/
-/*region tab切换*/
+/*region tab切换 m-tab*/
+.m-tab .tab-head {
+  margin-top: 4px;
+  padding: 0 14px;
+  border-bottom: solid 2px #2991d9;
+}
+.m-tab .tab-head .item {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 8px;
+  margin: 0 9px;
+  font-size: 0.9375rem;
+  min-width: 60px;
+  height: 29px;
+  line-height: 34px;
+  background-image: url("icon/navTab.png");
+  background-position: 0 -32px;
+  cursor: pointer;
+}
+.m-tab .tab-head .item:before {
+  position: absolute;
+  content: "";
+  display: block;
+  left: -18px;
+  top: 0;
+  width: 18px;
+  height: 29px;
+  background-image: url("icon/navTab.png");
+  background-position: 0 0;
+}
+.m-tab .tab-head .item:after {
+  position: absolute;
+  content: "";
+  display: block;
+  right: -18px;
+  top: 0;
+  width: 18px;
+  height: 29px;
+  background-image: url("icon/navTab.png");
+  background-position: 0 -66px;
+}
+.m-tab .tab-head .item.active {
+  color: #fff;
+  background-position: 0 -135px;
+}
+.m-tab .tab-head .item.active:before {
+  background-position: 0 -102px;
+}
+.m-tab .tab-head .item.active:after {
+  z-index: 3;
+  background-position: 0 -169px;
+}
+.m-tab .tab-body {
+  padding-top: 4px;
+}
 /*endregion*/

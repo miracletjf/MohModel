@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/OHModel.css">
+    <script type="text/javascript" src="../plugIn/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/mToolsJQ.js"></script>
+    <title>标题</title>
+</head>
+<body class="wrap" id="wrap">
+<!-- 页面头部 -->
+<div class="g-top clear-fix">
+    <!-- logo -->
+    <a class="m-logo f-fl"><img src="../images/logo2.png" alt="logo"></a>
+    <!-- 调整按钮 -->
+    <div class="u-adjust f-fl" id="adjust"><i class="glyphicon glyphicon-align-justify"></i></div>
+    <!-- 用户 -->
+    <div class="m-user f-fr">
+        <span class="name"><span class="text f-ib">这是五六个字</span><i class="caret"></i></span>
+        <div class="menu-box">
+            <a class="item text">嘉兴市粮食局</a>
+            <a class="item">个人中心</a>
+            <a class="item"><span class="f-ib">消息</span><span class="badge">3</span></a>
+            <a class="item">退出</a>
+        </div>
+    </div>
+    <!-- 顶部导航 -->
+    <div class="m-nav f-fr" id="nav"></div>
+</div>
+<!-- 侧边栏 -->
+<div class="g-left" id="slide_frame"></div>
+<!-- 页面主体不部分 -->
+<div class="g-main" id="main_frame">
+    <iframe name="main_frame" frameborder="0" width="100%" height="100%"></iframe>
+</div>
+<!-- 页面底部 -->
+<div class="g-bottom">
+    <span>© 技术支持：杭州安鸿科技股份有限公司</span>
+</div>
+
+<script>
+
+    window.onload = function () {
+        adjust();
+        addTopNav('nav','../json/topNav.json');
+        addSlideNav('slide_frame','../json/slideNav.json');
+    };
+
+    //调整侧边栏收放
+    function adjust() {
+        var sp = false;
+        $('#adjust').on('click',function () {
+            var wrap = $('#wrap');
+            if(!sp){
+                wrap.addClass('open');
+            }else {
+                wrap.removeClass('open');
+            }
+            sp = !sp;
+        });
+    }
+    //创建头部导航
+    function addTopNav(id,url) {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                var topNav = new TopNav(id,data,function () {
+                    var liUrl = $(this).attr('dataurl');
+                    addSlideNav('slide_frame',liUrl);
+                });
+                topNav.init();
+            },
+            error: function () {
+                alert('error');
+            }
+        })
+    }
+    //加载侧边菜单
+    function addSlideNav(id,url) {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                var snav = new SlideNav(id,data);
+                snav.init();
+            },
+            error: function () {
+                alert('error');
+            }
+        })
+    }
+
+
+</script>
+
+</body>
+</html>
