@@ -106,11 +106,12 @@ Moh.prototype.classHandler = function(effect,name) {
  *  2.方法
  *    init() 初始化tab方法，实现tab切换功能
  * */
-function TabsChange(tabsId,contentsId){
+function TabsChange(tabsId,contentsId,callback){
     this.tabPs = document.getElementById(tabsId);
     this.contPs = document.getElementById(contentsId);
     this.tabs = [];
     this.conts = [];
+    this.callback = callback;
 }
 
 TabsChange.prototype = {
@@ -121,50 +122,51 @@ TabsChange.prototype = {
         var that = this;
         var tabChilds = that.tabPs.childNodes;
         var contChilds = that.contPs.childNodes;
-        var flagHead = 0;
-        var flagBody = 0;
 
-        for(var i = 0; i < tabChilds.length; i++){
-            var nodeItem = tabChilds[i];
+        that.domFilter(tabChilds,that.tabs);
+        that.domFilter(contChilds,that.conts);
+        var tab0 = that.addEvent(that,tabChilds,contChilds);
+        tab0.click();
+
+
+    },
+    domFilter: function (nodes,objs) {
+        for(var i = 0; i < nodes.length; i++){
+            var nodeItem = nodes[i];
 
             if(nodeItem.nodeType == 1){
-                that.tabs.push(i);
-                flagHead++;
-                if(flagHead == 1){
-                    nodeItem.className = nodeItem.className + ' active';
-                }
+                objs.push(i);
             }
         }
-
-        for (var i = 0; i < contChilds.length; i++){
-            var nodeItem = contChilds[i];
-            if(nodeItem.nodeType == 1){
-                that.conts.push(i);
-                flagBody++;
-                if(flagBody != 1){
-                    nodeItem.style.display = "none";
-                }
-            }
-        }
-
+    },
+    addEvent: function (that,tabChilds,contChilds) {
         for(var i = 0;i<that.tabs.length;i++){
             (function (i) {
+
                 tabChilds[that.tabs[i]].onclick = function () {
-                    console.log(i);
+
                     for(var j=0;j<that.conts.length;j++){
+
                         tabChilds[that.tabs[j]].className = tabChilds[that.tabs[j]].className.replace(/ active/,'');
                         if(i == j){
+                            console.log(i);
+
                             tabChilds[that.tabs[j]].className = tabChilds[that.tabs[j]].className + ' active';
                             contChilds[that.conts[j]].style.display = 'block';
                         }else{
                             contChilds[that.conts[j]].style.display = 'none';
                         }
                     }
+
+                    if(typeof that.callback == 'function'){
+                        that.callback.call(this,i,contChilds[that.conts[i]]);
+                    }
                 }
             })(i);
         }
-
+        return tabChilds[that.tabs[0]];
     }
+
 }
 
 /** appendHTML
@@ -187,3 +189,31 @@ HTMLElement.prototype.appendHTML = function (html) {
     fragment = null;
 
 };
+
+/** 获取页面宽度，高度
+ *  1.参数 win
+ *    默认为当前的window对象，传入参数即可覆盖
+ *  2.返回值
+ *    返回一个对象
+ *      width: 页面宽度
+ *      height: 页面高度
+ *
+ * */
+
+function getPageSize(win){
+    var winObj = win || window;
+    var pageWidth = winObj.innerWidth;
+    var pageHeight = winObj.innerHeight;
+
+    if(typeof pageWidth != 'number'){
+        if(document.compatMode == "CSS1Compat"){
+            pageWidth = winObj.document.documentElement.clientWidth;
+            pageHeight = winObj.document.documentElement.clientHeight;
+        }else {
+           pageWidth = winObj.document.body.clientWidth;
+           pageHeight = winObj.document.body.clientHeight;
+        }
+    }
+
+    return {width:pageWidth,height:pageHeight};
+}

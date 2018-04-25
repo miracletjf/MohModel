@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/tableExpand.css">
+  <script type="text/javascript" src="../plugIn/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="../plugIn/html2canvas.min.js"></script>
+  <title>统计表格</title>
+</head>
+<body>
+<div class="tb-body-wrap" id="tb_wrap"></div>
+
+<script type="text/javascript" src="../js/tableExpend.js"></script>
+<script>
+  $(function () {
+    var tb = new TableExpend();
+    tb.init({
+      wrapObj: $('#tb_wrap')
+    });
+  });
+</script>
+</body>
+</html>

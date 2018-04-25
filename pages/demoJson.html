@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/tableExpand.css">
+  <script type="text/javascript" src="../plugIn/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="../plugIn/html2canvas.min.js"></script>
+  <title>统计表格</title>
+</head>
+<body>
+<div class="table-body-box" id="table_box"><table class="expand-table" id="count_table"></table></div>
+
+<script>
+  var tbHeadData;
+  var subDataDone = {};
+  var minDataDone = {};
+
+  $(function () {
+    var table = $('#count_table');
+    var tbHeads = generateHead(table);
+
+  });
+
+
+  /** 生成表头
+   *  1. 参数
+   *    obj: 表格对象
+   *  2. 返回值
+   *    tbHeads: 表头数据对象
+   * */
+  function generateHead(obj) {
+    $.get("../json/statisArrx.json",function (data) {
+      console.log(data);
+
+      var tbHeads = data.listx;
+      tbHeadData = data.listx;
+      var colSpan = 1;
+      var html = '<colgroup>'+
+                  '<col class="col-icon">' +
+                  '<col class="col-icon">' +
+                  '<col width="285">';
+      for(var index = 0;index<tbHeads.length;index++){
+          html += '<col width="100">'
+      }
+      html += '</colgroup>';
+      for(var index=0;index<2;index++){
+          html += '<thead id="head'+index+'">';
+          html +='<tr><th rowspan="2"></th><th rowspan="2"></th><th rowspan="2">地区</th>';
+
+          for(var i=0;i<tbHeads.length;i++){
+              if(tbHeads[i+1] && tbHeads[i].COL === tbHeads[i+1].COL){
+                  colSpan ++;
+              }else {
+                  html += '<th colspan="'+colSpan+'">'+tbHeads[i].COL+'</th>';
+                  colSpan = 1;
+              }
+          }
+
+          html +='</tr></tr>';
+
+          for(var i=0;i<tbHeads.length;i++){
+              html += '<th>'+tbHeads[i].NAME+'</th>'
+          }
+
+          html += '</tr></thead>';
+      }
+
+      html += '<tbody><tr>';
+      html += '<td></td><td></td><td>合计</td>';
+      for(var i=0;i<tbHeads.length;i++){
+          html += '<td>'+tbHeads[i].NUM+'</td>'
+      }
+      html += '</tr></tbody>';
+
+      obj.append(html);
+
+
+      generateSup(obj,tbHeads);
+
+      return tbHeads;
+    })
+  }
+
+  /** 生成一级目录
+   *  1. 参数
+   *    obj: table对象
+   *    tbHeads: 表头对象
+   * */
+  function generateSup(obj,tbHeads){
+    $.get("../json/statisData1.json",function (data) {
+      console.log(data);
+
+      var tbSupDatas = data.list1;
+      var html = '<tbody>';
+
+      var hash = getHash(tbSupDatas,'CODE2');
+
+      html += hashToTr(hash,tbHeads,'supper');
+
+      html += '</tbody>';
+
+      obj.append(html);
+      fixedHead('#head1','#head0');
+
+    });
+  }
+
+  /** 生成二级目录
+   *  1. 参数
+   *    obj: 父级对象元素，tbody
+   *    bode: 生成该对象的父级code
+   * */
+  function generateSub(obj,code) {
+    $.get("../json/statisData2.json",function (data) {
+      console.log(data);
+      var tbSubDates = data.list2;
+      var hash = getHash(tbSubDates,'CODE1');
+      var html = hashToTr(hash,tbHeadData,'sub');
+      obj.after(html);
+      if(!subDataDone[code]){
+          subDataDone[code] = true;
+      }
+      obj.toggleClass('open');
+      fixedHead('#head1','#head0');
+    });
+  }
+
+  /** 生成三级数据
+   *  1.参数
+   *    obj: 生成该对象的父级对象所对应的dom元素
+   *    code: 生成该对象的父级code
+   * */
+  function generateMin(obj,code) {
+      $.get("../json/statisData3.json",function (data) {
+          console.log(data);
+          var tbSubDates = data.list3;
+          var hash = getHash(tbSubDates,'ENT_ID');
+          var html = hashToTr(hash,tbHeadData,'min');
+          $(obj).after(html);
+          if(!minDataDone[code]){
+              minDataDone[code] = true;
+          }
+          obj.toggleClass('open');
+          fixedHead('#head1','#head0');
+      })
+  }
+
+  /**
+   *  一级菜单点击事件
+   *  1.参数
+   *    obj: 点击的对象
+   *    code: 行政区域代码
+   * */
+  function supClick(obj,code) {
+      var _this = obj;
+      var supObj = $(_this).parent().parent();
+      var sup = supObj.attr('tName');
+      var mins = $('[ssupName="'+sup+'"]');
+      var subs = $('[supName = "'+sup+'"]');
+
+      if(!subDataDone[code]){
+          generateSub(supObj,code);
+      }else{
+        if(supObj.hasClass('open')){
+          mins.addClass('hide');
+          subs.addClass('hide');
+          supObj.siblings('.bor-top').removeClass('bor-top');
+          supObj.siblings('.bor-bot').removeClass('bor-bot');
+          subs.removeClass('open');
+        }else {
+          subs.removeClass('hide');
+          subs.eq(0).addClass('bor-top');
+          subs.eq(subs.length-1).addClass('bor-bot');
+
+        }
+        supObj.toggleClass('open');
+        fixedHead('#head1','#head0');
+      }
+
+  }
+
+  /**
+   *  二级菜单点击事件
+   *  1.参数
+   *    obj: 点击的对象
+   *    code: 行政区域代码
+   * */
+  function subClick(obj,code) {
+      var _this = obj;
+      var subObj = $(_this).parent().parent();
+      var sub = subObj.attr('tName');
+      var mins = $( '[supName="'+sub+'"]' );
+
+      if(!minDataDone[code]){
+          generateMin(subObj,code);
+      }else{
+        if(subObj.hasClass('open')){
+          if(mins.length){
+              mins.addClass('hide');
+              if(sub === mins.parent().find('.bor-bot').attr('supName')){
+                  subObj.addClass('bor-bot');
+                  mins.removeClass('bor-bot');
+              }
+          }
+        }else {
+            mins.removeClass('hide');
+            if(subObj.hasClass('bor-bot') && mins.length){
+                subObj.removeClass('bor-bot');
+                mins.eq(mins.length-1).addClass('bor-bot');
+            }
+        }
+        subObj.toggleClass('open');
+        fixedHead('#head1','#head0');
+      }
+
+  }
+
+  /**
+   *  遍历找出每组数据
+   *  存放到hash对象中
+   *  1. 参数
+   *    arrs: 待遍历数组
+   *    key: hash对象的key
+   *  2. 返回值
+   *    hash: 分好组的hash对象
+   *  */
+  function getHash(arrs,key) {
+      var hash = {};
+      for(var i=0;i<arrs.length;i++){
+          if(!hash[arrs[i][key]]){
+              hash[arrs[i][key]] = {};
+          }
+          hash[arrs[i][key]][arrs[i].ID] = arrs[i];
+      }
+      return hash;
+  }
+
+  /**
+   *  遍历hash对象
+   *  匹配表头相对应的位置的数据
+   *  根据hash数据返回html
+   *  1. 参数
+   *    hash: 匹配好的hash对象
+   *    arrHead: 表头数据
+   *    level: 表格类型
+   *  2. 返回值
+   *    html: 返回生成的html
+   *  */
+  function hashToTr(hash,arrHead,level) {
+      var html ='';
+
+      for(var key in hash){
+          //hash的每一项
+          var item = hash[key];
+          var name;
+
+          if(level === 'supper'){
+              name = 'NAMEY';
+              html += '<tr class="box supper" tName="'+key+'">';
+              html += '<td><i class="icon-expand"  onclick="supClick(this,\''+key+'\')"></i></td><td></td>';
+          }else if(level === 'sub'){
+              name = 'NAME1';
+              html += '<tr class="box sub" tName="'+key+'" supName="'+item['A1'].CODE2+'">';
+              html += '<td></td><td><i class="icon-expand"  onclick="subClick(this,\''+key+'\')" ></i></td>';
+          }else {
+              name = 'ENT_NAME';
+              html += '<tr class="box min" tName="'+key+'" supName="'+item['A1'].CODE1+'" ssupName="'+item['A1'].CODE2+'">';
+              html += '<td></td><td></td>';
+          }
+          var flag = 1;
+          for(var i=0;i<arrHead.length;i++){
+              var tdObj = item[arrHead[i].ID];
+              if(tdObj){
+                  if(flag===1){
+                      html += '<td>'+ tdObj[name] +'</td>';
+                      flag--;
+                  }
+                  html += '<td>'+ tdObj.NUM +'</td>';
+              }else{
+                  html += '<td>0</td>';
+              }
+          }
+          html +='</tr>';
+      }
+
+      return html;
+  }
+  
+  function fixedHead(headflex,head) {
+      var $headflex = $(headflex);
+      var $head = $(head);
+      $headflex.find('th').each(function (i,em) {
+          console.log(em);
+          $(em).css('width',$head.find('th').eq(i).css('width'));
+      })
+      $headflex.css('width',$head.css('width'));
+  }
+
+  window.onresize = function (ev) {
+      fixedHead('#head1','#head0');
+  };
+  document.getElementById('table_box').onscroll = function (ev) {
+      var _this = ev.target;
+      fixedHead('#head1','#head0');
+      var scTop = $(_this).scrollTop();
+      var scLeft = $(_this).scrollLeft();
+      var offTop = $('#head0').offset().top;
+      var offLeft = $('#head0').offset().left;
+      if(scTop > offTop){
+          $('#head1').css({
+              'top': '0px',
+              'left': offLeft + 1 + 'px'
+          });
+          $('#head1').show();
+      }else{
+          $('#head1').hide();
+      }
+  }
+</script>
+</body>
+</html>

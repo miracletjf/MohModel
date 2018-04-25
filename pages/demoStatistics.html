@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/tableExpand.css">
+  <script type="text/javascript" src="../plugIn/jquery-1.8.3.min.js"></script>
+  <title>统计表格</title>
+</head>
+<body>
+  <table class="expand-table">
+    <colgroup>
+      <col class="col-icon">
+      <col class="col-icon">
+    </colgroup>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>地区</th>
+        <th>合计</th>
+        <th>小麦</th>
+        <th>晚籼谷</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="box supper" tName="me0">
+        <td><i class="icon-expand" onclick="supClick(this);"></i></td>
+        <td></td>
+        <td>丽水市</td>
+        <td>100</td>
+        <td>50</td>
+        <td>50</td>
+      </tr>
+      <tr class="box sub bor-top" tName="me00" supName="me0">
+        <td></td>
+        <td><i class="icon-expand" onclick="subClick(this)"></i></td>
+        <td>市本级</td>
+        <td>40</td>
+        <td>10</td>
+        <td>30</td>
+      </tr>
+      <tr class="box min" supName="me00" ssupName="me0">
+        <td></td>
+        <td></td>
+        <td>中心库</td>
+        <td>30</td>
+        <td>10</td>
+        <td>20</td>
+      </tr>
+      <tr class="box min" supName="me00" ssupName="me0">
+        <td></td>
+        <td></td>
+        <td>中心粮库</td>
+        <td>10</td>
+        <td>0</td>
+        <td>10</td>
+      </tr>
+      <tr class="box sub" tName="me01" supName="me0">
+        <td></td>
+        <td><i class="icon-expand active" onclick="subClick(this)"></i></td>
+        <td>松阳县</td>
+        <td>60</td>
+        <td>40</td>
+        <td>20</td>
+      </tr>
+      <tr class="box min bor-bot" supName="me01" ssupName="me0">
+        <td></td>
+        <td></td>
+        <td>储备中心</td>
+        <td>60</td>
+        <td>40</td>
+        <td>20</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr class="box supper" tName="me1">
+        <td><i class="icon-expand" onclick="supClick(this);"></i></td>
+        <td></td>
+        <td>丽水市</td>
+        <td>100</td>
+        <td>50</td>
+        <td>50</td>
+      </tr>
+      <tr class="box sub bor-top" tName="me10" supName="me1">
+        <td></td>
+        <td><i class="icon-expand" onclick="subClick(this)"></i></td>
+        <td>市本级</td>
+        <td>40</td>
+        <td>10</td>
+        <td>30</td>
+      </tr>
+      <tr class="box min" supName="me10" ssupName="me1">
+        <td></td>
+        <td></td>
+        <td>中心库</td>
+        <td>30</td>
+        <td>10</td>
+        <td>20</td>
+      </tr>
+      <tr class="box min" supName="me10" ssupName="me1">
+        <td></td>
+        <td></td>
+        <td>中心粮库</td>
+        <td>10</td>
+        <td>0</td>
+        <td>10</td>
+      </tr>
+      <tr class="box sub" tName="me11" supName="me1">
+        <td></td>
+        <td><i class="icon-expand active" onclick="subClick(this)"></i></td>
+        <td>松阳县</td>
+        <td>60</td>
+        <td>40</td>
+        <td>20</td>
+      </tr>
+      <tr class="box min bor-bot" supName="me11" ssupName="me1">
+        <td></td>
+        <td></td>
+        <td>储备中心</td>
+        <td>60</td>
+        <td>40</td>
+        <td>20</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr class="box supper" tName="me2">
+        <td><i class="icon-expand" onclick="supClick(this);"></i></td>
+        <td></td>
+        <td>丽水市</td>
+        <td>100</td>
+        <td>50</td>
+        <td>50</td>
+      </tr>
+      <tr class="box sub bor-top" tName="me20" supName="me2">
+        <td></td>
+        <td><i class="icon-expand" onclick="subClick(this)"></i></td>
+        <td>市本级</td>
+        <td>40</td>
+        <td>10</td>
+        <td>30</td>
+      </tr>
+      <tr class="box min" supName="me20" ssupName="me2">
+        <td></td>
+        <td></td>
+        <td>中心库</td>
+        <td>30</td>
+        <td>10</td>
+        <td>20</td>
+      </tr>
+      <tr class="box min" supName="me20" ssupName="me2">
+        <td></td>
+        <td></td>
+        <td>中心粮库</td>
+        <td>10</td>
+        <td>0</td>
+        <td>10</td>
+      </tr>
+      <tr class="box sub" tName="me21" supName="me2">
+        <td></td>
+        <td><i class="icon-expand active" onclick="subClick(this)"></i></td>
+        <td>松阳县</td>
+        <td>60</td>
+        <td>40</td>
+        <td>20</td>
+      </tr>
+      <tr class="box min bor-bot" supName="me21" ssupName="me2">
+        <td></td>
+        <td></td>
+        <td>储备中心</td>
+        <td>60</td>
+        <td>40</td>
+        <td>20</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    $(function () {
+
+    });
+
+
+    function supClick(obj) {
+        var _this = obj;
+        var supObj = $(_this).parent().parent();
+        var sup = supObj.attr('tName');
+        var mins = $('[ssupName="'+sup+'"]');
+        var subs = $('[supName = "'+sup+'"]');
+
+
+        if(supObj.hasClass('open')){
+            mins.removeClass('show');
+            subs.removeClass('show');
+            supObj.siblings('.bor-top').removeClass('bor-top');
+            supObj.siblings('.bor-bot').removeClass('bor-bot');
+            subs.removeClass('open');
+        }else {
+            subs.addClass('show');
+            subs.eq(0).addClass('bor-top');
+            subs.eq(subs.length-1).addClass('bor-bot');
+
+        }
+        supObj.toggleClass('open');
+    }
+
+    function subClick(obj) {
+        var _this = obj;
+        var subObj = $(_this).parent().parent();
+        var sub = subObj.attr('tName');
+        var mins = $('[supName="'+sub+'"]');
+
+        if(subObj.hasClass('open')){
+            if(mins.length){
+                mins.removeClass('show');
+                if(sub === mins.parent().find('.bor-bot').attr('supName')){
+                    subObj.addClass('bor-bot');
+                    mins.removeClass('bor-bot');
+                }
+            }
+        }else {
+            mins.addClass('show');
+            if(subObj.hasClass('bor-bot') && mins.length){
+                subObj.removeClass('bor-bot');
+                mins.eq(mins.length-1).addClass('bor-bot');
+            }
+        }
+        subObj.toggleClass('open');
+    }
+  </script>
+</body>
+</html>
