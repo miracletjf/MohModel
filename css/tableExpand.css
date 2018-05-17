@@ -10,12 +10,14 @@ table {
   border-collapse: collapse;
   border: solid 1px #ddd;
 }
+.th,
 th {
   padding: 0 3px;
   border-right: solid 1px #ddd;
   border-bottom: solid 1px #ddd;
   font-size: 14px;
   line-height: 28px;
+  text-align: center;
 }
 td {
   padding: 0 3px;
@@ -24,6 +26,9 @@ td {
   line-height: 28px;
 }
 /*css common*/
+.hideImp {
+  display: none!important;
+}
 .tb-box {
   overflow-y: scroll;
   margin-right: -17px;
@@ -34,10 +39,21 @@ td {
 .tb-head-box {
   margin-bottom: -17px;
   margin-right: -17px;
+  overflow-x: scroll;
+}
+.tb-head-box .expand-table .icon-expand-all {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 14px;
+  background: url("icon/icon_all_expand.png") no-repeat center;
+  cursor: pointer;
+}
+.tb-head-box .expand-table .open .icon-expand-all {
+  background: url("icon/icon_all_pack.png") no-repeat center;
 }
 .tb-body-box {
   position: relative;
-  max-height: 500px;
   margin-right: -17px;
 }
 .tb-body-box .expand-table {
@@ -46,30 +62,37 @@ td {
 .expand-table {
   width: 100%;
 }
+.expand-table thead .th,
 .expand-table thead th {
   background: #f5f5f5;
 }
 .expand-table tbody td {
   text-align: right;
+  padding-right: 3px;
 }
-.expand-table .td-name {
+.expand-table tbody tr:hover {
+  background: #4a9be0;
+}
+.expand-table tbody tr:hover td {
+  color: #fff;
+}
+.expand-table.left tbody td {
   text-align: left;
 }
-.expand-table .icon-col {
-  width: 30px;
+.expand-table.center tbody td {
+  text-align: center;
+}
+.expand-table tbody td.td-name {
+  padding-left: 5px;
+  text-align: left;
 }
 .expand-table .icon-expand {
   display: inline-block;
   vertical-align: middle;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 14px;
   background: url("icon/icon_expand.png") no-repeat center;
   cursor: pointer;
-  -webkit-transition: all .4s ease;
-  -moz-transition: all .4s ease;
-  -ms-transition: all .4s ease;
-  -o-transition: all .4s ease;
-  transition: all .4s ease;
 }
 .expand-table .supper.open .icon-expand,
 .expand-table .sub.open .icon-expand {
@@ -77,6 +100,9 @@ td {
 }
 .expand-table .supper {
   background: #fff;
+}
+.expand-table .supper .td-name {
+  padding-left: 15px;
 }
 .expand-table .sub,
 .expand-table .min {
@@ -89,6 +115,9 @@ td {
 .expand-table .sub {
   background: #cfe7f7;
 }
+.expand-table .sub .td-name {
+  padding-left: 25px;
+}
 .expand-table .sub td {
   font-size: 13px;
 }
@@ -98,9 +127,31 @@ td {
 .expand-table .min {
   background: #def3ff;
 }
+.expand-table .min .td-name {
+  padding-left: 55px;
+}
 .expand-table .min td {
   font-size: 12px;
 }
 .expand-table .min td:nth-child(3) {
   padding-left: 20px;
+}
+.export-btn {
+  position: relative;
+  left: -20px;
+  margin-right: 10px;
+  padding: 4px 8px;
+  line-height: 23px;
+  height: 23px;
+  font-size: 13px;
+  color: #fff;
+  font-weight: 200;
+  text-shadow: -1px -1px 3px #383838;
+  background: #1c7adc;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.export-btn:hover {
+  background: #3287e0;
+  box-shadow: 0 1px 3px 0px #999, 0px 0px 3px 1px #d8d8d8;
 }

@@ -178,7 +178,12 @@
         //tab切换
         var tabDemo = new TabsChange('tab_head','tab_body');
         tabDemo.init();
-    }
+    };
+    window.onresize = function () {
+      //隐藏滚动条辅助
+      var winWidth =  $(window).width();
+      $('#scroll_wrap').width(winWidth);
+    };
 </script>
 </body>
 </html>

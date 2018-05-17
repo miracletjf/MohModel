@@ -21,7 +21,10 @@ function TableExpend() {
     },
     cols: [],     //从地区后第一列开始（设置每列宽度数组形式） ex: [100,300,,200]
     countRow: true,  //合计行
-    default: 0
+    default: 0,
+    order: [],
+    type: 'col',
+    alignType: 'left'
   };
   this.temp = {
     supLength: 0,
@@ -67,7 +70,7 @@ TableExpend.prototype = {
       var tbHeads = data.listx;
       _this.options.tbHeadData = data.listx;
       var colSpan = 1;
-      var html = '<table class="expand-table" id="head_tb">';
+      var html = '<table class="expand-table '+_this.options.alignType+'" id="head_tb">';
       html += _this.generateColgroup(tbHeads);
       html += '<thead>';
       html += '<tr><th rowspan="2"><span class="export-btn">导出</span>'+_this.options.mainCol.text+'</th>';
@@ -104,7 +107,7 @@ TableExpend.prototype = {
     $.get("../json/statisData1.json", function (data) {
 
       var tbSupDatas = data.list1;
-      var html = '<table class="expand-table" id="body_tb">';
+      var html = '<table class="expand-table '+_this.options.alignType+'" id="body_tb">';
 
       var hash = _this.getHash(tbSupDatas, _this.options.levelKeys.supper);
 
@@ -164,8 +167,12 @@ TableExpend.prototype = {
     var _this = this;
     $.get("../json/statisData3.json", function (data) {
       var tbSubDates = data.list3;
-      var hash = _this.getHash(tbSubDates, 'ENT_ID');
-      var html = _this.hashToTr(hash, _this.options.tbHeadData, 'min');
+      if(_this.options.type === 'col'){
+        var hash = _this.getHash(tbSubDates, _this.options.levelKeys.min);
+        var html = _this.hashToTr(hash, _this.options.tbHeadData, 'min');
+      }else{
+        var html = _this.options.dataToTr(data);
+      }
       var minObjs = $(html).insertAfter(obj);
       if (!_this.options.subDataDone[code]) {
         _this.options.subDataDone[code] = true;
@@ -341,5 +348,26 @@ TableExpend.prototype = {
     }
 
     return html;
+  },
+  dataToTr: function (data) {
+    var _this = this;
+    var html = '';
+    var row;
+    for(var i=0;i<data.length;i++){
+      row = data[i];
+      html += '<tr class="box min" tName="'+row[_this.options.levelKeys.min]+'" supName="'+row[_this.options.levelKeys.sub]+'" ssupName="'+_this.options.levelKeys.supper+'">';
+      for(var j = 0 ;j<_this.options.order.length; j++){
+        if(j === 0){
+          html += '<td class="td-name">'+row[_this.options.order[j]]+'</td>';
+          continue;
+        }
+        var content = (!row[_this.options.order[j]])?_this.options.default:row[_this.options.order[i]];
+        html += '<td>'+content+'</td>';
+      }
+      html += '</tr>';
+    }
+
+    return html;
   }
+  
 }

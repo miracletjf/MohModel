@@ -10,12 +10,15 @@
 <body>
 <div class="tb-body-wrap" id="tb_wrap"></div>
 
-<script type="text/javascript" src="../js/tableExpend.js"></script>
+<script type="text/javascript" src="../js/tableExpendB.js"></script>
 <script>
   $(function () {
     var tb = new TableExpend();
     tb.init({
-      wrapObj: $('#tb_wrap')
+      wrapObj: $('#tb_wrap'),
+      random: 30,
+      wrapHeight: 600,
+      cols:[100,,200]
     });
   });
 </script>

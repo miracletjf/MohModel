@@ -80,7 +80,6 @@
         <br>
         <br>
         <br>
-
         <a href="javascript:window.open('https://www.baidu.com','555','location=no,status=no,scrollvars=no');">新窗口打开</a>
     </div>
 </div>
@@ -89,7 +88,12 @@
         //隐藏滚动条辅助
         var winWidth =  $(window).width();
         $('#scroll_wrap').width(winWidth);
-    }
+    };
+    window.onresize = function () {
+      //隐藏滚动条辅助
+      var winWidth =  $(window).width();
+      $('#scroll_wrap').width(winWidth);
+    };
 </script>
 </body>
 </html>

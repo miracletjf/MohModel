@@ -10,12 +10,13 @@ table {
   border-collapse: collapse;
   border: solid 1px @borderColor;
 }
-th {
+.th,th {
   padding: 0 3px;
   border-right: solid 1px @borderColor;
   border-bottom: solid 1px @borderColor;
   font-size: 14px;
   line-height: 28px;
+  text-align: center;
 }
 td {
   padding: 0 3px;
@@ -52,6 +53,10 @@ td {
   transition: all .4s ease;
 }
 
+.hideImp {
+  display: none!important;
+}
+
 .tb-box {
   overflow-y: scroll;
   margin-right: -17px;
@@ -62,10 +67,23 @@ td {
 .tb-head-box {
   margin-bottom: -17px;
   margin-right: -17px;
+  overflow-x: scroll;
+  .expand-table {
+    .icon-expand-all {
+      display: inline-block;
+      vertical-align: middle;
+      width: 20px;
+      height: 14px;
+      background: url("icon/icon_all_expand.png") no-repeat center;
+      cursor: pointer;
+    }
+    .open .icon-expand-all{
+      background: url("icon/icon_all_pack.png") no-repeat center;
+    }
+  }
 }
 .tb-body-box {
   position: relative;
-  max-height: 500px;
   margin-right: -17px;
   .expand-table {
     border-top: none;
@@ -76,32 +94,55 @@ td {
   width: 100%;
 
   thead {
-    th {
+    .th,th {
       background: #f5f5f5;
     }
   }
+
   tbody {
     td {
       text-align: right;
+      padding-right: 3px;
+    }
+    tr:hover {
+      background: #4a9be0;
+      td{
+        color: #fff;
+      }
     }
   }
 
-  .td-name {
-    text-align: left;
+  &.left {
+    tbody {
+      td {
+        text-align: left;
+      }
+    }
   }
 
-  .icon-col {
-    width: 30px;
+  &.center {
+    tbody {
+      td {
+        text-align: center;
+      }
+    }
   }
+  tbody{
+    td.td-name {
+      padding-left: 5px;
+      text-align: left;
+    }
+  }
+
+
 
   .icon-expand {
     display: inline-block;
     vertical-align: middle;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 14px;
     background: url("icon/icon_expand.png") no-repeat center;
     cursor: pointer;
-    .transitionDefault();
   }
 
   .supper.open,.sub.open {
@@ -112,6 +153,9 @@ td {
 
   .supper {
     background: #fff;
+    .td-name {
+      padding-left: 15px;
+    }
   }
 
   .sub,.min {
@@ -120,8 +164,12 @@ td {
       display: none;
     }
   }
+
   .sub {
     background: #cfe7f7;
+    .td-name {
+      padding-left: 25px;
+    }
     td {
       font-size: 13px;
       &:nth-child(3){
@@ -132,6 +180,9 @@ td {
 
   .min {
     background: #def3ff;
+    .td-name {
+      padding-left: 55px;
+    }
     td {
       font-size: 12px;
       &:nth-child(3){
@@ -139,8 +190,25 @@ td {
       }
     }
   }
+}
 
-
-
-
+//按钮
+.export-btn {
+  position: relative;
+  left: -20px;
+  margin-right: 10px;
+  padding: 4px 8px;
+  line-height: 23px;
+  height: 23px;
+  font-size: 13px;
+  color: #fff;
+  font-weight: 200;
+  text-shadow: -1px -1px 3px #383838;
+  background: #1c7adc;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.export-btn:hover {
+  background: #3287e0;
+  box-shadow: 0 1px 3px 0px #999, 0px 0px 3px 1px #d8d8d8;
 }

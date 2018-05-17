@@ -31,7 +31,6 @@ TopNav.prototype = {
             navHtml += '<li class="f-ib"><span class="item" dataUrl="'+dataLi.url+'">'+dataLi.name+'</span></li>';
         }
         navHtml += '</ul>';
-
         return $(navHtml).appendTo($('#'+id));
     },
     addEvent: function (obj) {
@@ -79,16 +78,13 @@ SlideNav.prototype = {
         var _this = this;
         var dataTemp = _this.data;
         var subData;
-        var classEx = '';
         var hrefStr = 'javascript:void(0);';
         var htmlStr = '<ul class="m-left-nav">';
         for(var i=0;i<dataTemp.length;i++){
             if(dataTemp[i].href){
                 hrefStr = dataTemp[i].href;
             }
-            htmlStr +='<li class="item'+classEx+'"><a  href="'+hrefStr+'"><i class="glyphicon glyphicon-folder-open"></i>'+dataTemp[i].name+'</a>';
-
-            classEx = '';
+            htmlStr +='<li class="item"><a  href="'+hrefStr+'" target="main_frame"><i class="glyphicon glyphicon-folder-open"></i>'+dataTemp[i].name+'</a>';
             hrefStr = 'javascript:void(0);';
 
             if(dataTemp[i].sub){

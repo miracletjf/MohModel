@@ -4,7 +4,7 @@
     {"name":"菜单1-2级","href":"demo2.html"},
     {"name":"菜单1-3级","href":"demo3.html"}
   ]},
-  {"name": "nav2级","href":"www.baidu.com"},
+  {"name": "nav2级","href":"demo2-1.html"},
   {"name": "nav3级","open":true,"sub":[
     {"name":"菜单3-1级","href":"www.baidu.com"},
     {"name":"菜单3-2级","href":"www.baidu.com"},

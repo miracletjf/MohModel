@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="../css/OHModel.css">
+  <!-- 使用 -->
+  <script type="text/javascript" src="../js/mTools.js"></script>
+  <script type="text/javascript" src="../plugIn/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/mToolsJQ.js"></script>
+</head>
+<body class="body-wrap">
+<div class="out-wrap">
+  <div class="wrap" id="scroll_wrap">
+    <ul class="moh-search-box">
+      <li>
+        <label class="moh-label">
+          <span class="field">期号</span>
+          <input type="text" class="moh-input">
+        </label>
+      </li>
+      <li>
+        <label class="moh-label">
+          <span class="field">填报日期&nbsp;&nbsp;从</span>
+          <input type="text" class="moh-input">
+        </label>
+        <label class="moh-label">
+          <span class="field">到</span>
+          <input type="text" class="moh-input">
+        </label>
+      </li>
+      <li>
+        <label class="moh-label">
+          <span class="field">填报单位</span>
+          <select class="moh-select" id="">
+            <option value="粮食局">粮食局</option>
+            <option value="中心库">中心库</option>
+          </select>
+        </label>
+      </li>
+      <li>
+        <label class="moh-label">
+          <span class="field">状态</span>
+          <select class="moh-select">
+            <option value="">全部</option>
+            <option value="">填报中</option>
+            <option value="">待审核</option>
+            <option value="">正式</option>
+            <option value="">未通过</option>
+          </select>
+        </label>
+      </li>
+      <li>
+        <button class="moh-btn">
+          <i class="moh-icon icon-search"></i>
+          <span class="text">搜索</span>
+        </button>
+      </li>
+    </ul>
+    <table class="m-tb result">
+      <tr class="tb-title">
+        <td colspan="5">
+          省级粮油储备收支平衡月报表
+          <button class="moh-btn title-mar"><i class="moh-icon icon-new-add"></i><span class="text">新增</span></button>
+          <button class="moh-btn"><i class="moh-icon icon-updo"></i><span class="text">导入</span></button>
+        </td>
+      </tr>
+      <tr class="tb-head">
+        <td>期号</td>
+        <td>填报单位</td>
+        <td>填报日期</td>
+        <td>状态</td>
+        <td>操作</td>
+      </tr>
+      <tr class="tb-content">
+        <td>2018年3月</td>
+        <td>浙江省粮食局</td>
+        <td>2018-03-05</td>
+        <td>正式</td>
+        <td><a href="">查看</a></td>
+      </tr>
+      <tr class="tb-content">
+        <td>2018年3月</td>
+        <td>浙江省粮食局</td>
+        <td>2018-03-05</td>
+        <td>正式</td>
+        <td><a href="">查看</a></td>
+      </tr>
+      <tr class="tb-content">
+        <td>2018年3月</td>
+        <td>浙江省粮食局</td>
+        <td>2018-03-05</td>
+        <td>正式</td>
+        <td><a href="">查看</a></td>
+      </tr>
+      <tr class="tb-content">
+        <td>2018年3月</td>
+        <td>浙江省粮食局</td>
+        <td>2018-03-05</td>
+        <td>正式</td>
+        <td><a href="">查看</a></td>
+      </tr>
+      <tr class="tb-content">
+        <td>2018年3月</td>
+        <td>浙江省粮食局</td>
+        <td>2018-03-05</td>
+        <td>正式</td>
+        <td><a href="">查看</a></td>
+      </tr>
+      <tr class="tb-content">
+        <td>2018年3月</td>
+        <td>浙江省粮食局</td>
+        <td>2018-03-05</td>
+        <td>正式</td>
+        <td><a href="">查看</a></td>
+      </tr>
+      <tr class="tb-content">
+        <td>2018年3月</td>
+        <td>浙江省粮食局</td>
+        <td>2018-03-05</td>
+        <td>正式</td>
+        <td><a href="">查看</a></td>
+      </tr>
+      <tr class="tb-content">
+        <td>2018年3月</td>
+        <td>浙江省粮食局</td>
+        <td>2018-03-05</td>
+        <td>正式</td>
+        <td><a href="">查看</a></td>
+      </tr>
+      <tr class="tb-content">
+        <td>2018年3月</td>
+        <td>浙江省粮食局</td>
+        <td>2018-03-05</td>
+        <td>正式</td>
+        <td><a href="">查看</a></td>
+      </tr>
+      <tr class="tb-content">
+        <td>2018年3月</td>
+        <td>浙江省粮食局</td>
+        <td>2018-03-05</td>
+        <td>正式</td>
+        <td><a href="">查看</a></td>
+      </tr>
+      <tr class="tb-bottom">
+        <td colspan="5">
+          <button class="moh-btn no-bg disabled">
+            <i class="moh-icon icon-page first"></i>
+          </button>
+          <button class="moh-btn no-bg disabled">
+            <i class="moh-icon icon-page pre"></i>
+          </button>
+          <span class="moh-separator"></span>
+          第<input type="text" class="page-num" value="1"/>页共&nbsp;5&nbsp;页
+          <button class="u-btn jump-btn">GO</button>
+          <span class="moh-separator"></span>
+          <button class="moh-btn no-bg">
+            <i class="moh-icon icon-page next"></i>
+          </button>
+          <button class="moh-btn no-bg">
+            <i class="moh-icon icon-page last"></i>
+          </button>
+
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<script>
+  window.onload = function () {
+    //隐藏滚动条辅助
+    var winWidth = $(window).width();
+    $('#scroll_wrap').width(winWidth);
+  }
+  window.onresize = function () {
+    //隐藏滚动条辅助
+    var winWidth = $(window).width();
+    $('#scroll_wrap').width(winWidth);
+  };
+</script>
+</body>
+</html>

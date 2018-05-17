@@ -13,22 +13,15 @@
 @bgColor: #fff;
 //字体大小
 @fontSize: 16px;
-@fontSize1: 0.875rem;
+@fontSize1: 0.9325rem;
 
 //框架规格
-@topSize: 45px;
+@topSize: 60px;
 @leftSize: 200px;
 @bottomSize: 30px;
 
-//主题样式
-@tbTitleBgc: #337ab7;
-@tbTitleColor: #fff;
-@tbHeadBgc: rgb(239, 239, 239);
-@tbBottomBgc: rgb(241, 241, 241);
-@tbContentBgcHover: rgb(228, 239, 255);
 
 /*功能函数*/
-//渐变背景
 .background-gradient(@topColor: #5bc0de,@backColor: #2f96b4,@bgColor: #49afcd){
   background-color: @bgColor;
   background-image: -moz-linear-gradient(top, @topColor, @backColor);
@@ -46,11 +39,11 @@
 .tb-hover() {
   &:hover {
     color: #fff;
-    background: @tbContentBgcHover;
+    background: @subColor2;
     td {
-      color: #333;
+      color: #fff;
       a{
-        color: #333;
+        color: #fff;
         &:hover {
           text-decoration: underline;
         }
@@ -58,15 +51,8 @@
     }
   }
 }
-
-
-
-/*region 通用样式类*/
-
-
-/*endregion*/
-
 /*region 整体布局类*/
+
 html,body {
   margin: 0;
   padding: 0;
@@ -98,14 +84,6 @@ audio, video, input, textarea, tr, th, td{
   -webkit-tap-highlight-color: transparent;
 }
 
-input:focus,select:focus,select:focus{
-  outline: none;
-  border-color: #66afe9;
-  box-shadow: 0 0 5px 0 #93cdf9;
-}
-a:focus,button:focus{
-  outline: none;
- }
 a {
   text-decoration: none;
 }
@@ -114,7 +92,6 @@ img {
   max-height: 100%;
 }
 /*endregion*/
-
 
 /*region 图标类 glyphicon*/
 @font-face {
@@ -918,22 +895,22 @@ h6,.h6 {
 
   .m-logo{
     display: block;
-    height: 45px;
-    margin: 0 10px;
+    height: 50px;
+    margin: 5px 10px;
     img {
       display: block;
     }
   }
 
   .u-adjust {
-    margin: 5px;
+    margin: 13px 5px;
     font-size: 25px;
     color: #fff;
     cursor: pointer;
   }
 
   .m-nav {
-    margin-top: 9px;
+    margin-top: 15px;
     ul {
       font-size: 0;
       li {
@@ -963,7 +940,7 @@ h6,.h6 {
   .m-user {
     position: relative;
     margin: 0 20px;
-    margin-top: 4px;
+    margin-top: 10px;
     cursor: pointer;
     .name {
       display: block;
@@ -1173,11 +1150,11 @@ h6,.h6 {
   text-align: center;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   border: 1px solid;
-  border-color: #2f96b4 #2f96b4 #2f96b4 ;
+  border-color: #2f96b4 #2f96b4 #1f6377;
   border-radius: 4px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  .background-gradient(#5bc0de,#4ba7c1,#49afcd);
+  .background-gradient();
 
   &:active {
     -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
@@ -1187,7 +1164,9 @@ h6,.h6 {
     border-color: #2d6ca2;
   }
   &:focus {
-    outline: none;
+      outline: thin dotted #333;
+      outline: 5px auto -webkit-focus-ring-color;
+      outline-offset: -2px;
   }
   &:disabled {
     background: #909090 !important;
@@ -1201,146 +1180,21 @@ h6,.h6 {
     color: #337ab7;
     background-color: #fff;
   }
-  //页码跳转按钮
-  &.jump-btn{
-    padding: 1px 3px;
-    letter-spacing: 1px;
-    text-indent: 1px;
-    font-size: 12px;
-  }
 }
 /*endregion*/
 
 /*region 表单样式 u-ipt*/
-.u-ipt{
+.u-ipt,input[type="text"], select {
   display: inline-block;
   box-sizing: border-box;
   width: 180px;
   padding-left: 4px;
-  height: 26px;
-  line-height: 24px;
-  border: solid 1px #ccc;
-}
-/*查询*/
-.moh-search-box {
-  li {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 4px;
-  }
-}
-/* input,select */
-.moh-label {
-  margin: 0 1px;
-  font-size: 0.8125rem;
-  .field{
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 4px;
-    &:after{
-      content: ':';
-      display: inline-block;
-      font-weight: bold;
-      margin-left: 2px;
-    }
-  }
-}
-.moh-input,.moh-select {
-  display: inline-block;
-  vertical-align: middle;
-  width: 108px;
-  height: 26px;
-  padding: 0 6px;
-  font-size: 0.75rem;
-  line-height: 24px;
-  border: solid 1px #ccc;
-  border-radius: 1px;
-  &.width-auto {
-    width: auto;
-  }
-}
-.moh-select {
-  padding-right: 0;
-}
-.moh-btn {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 24px;
-  height: 26px;
-  padding: 0 0 0 24px;
-  border-radius: 3px;
-  border: solid 1px #dedede;
-  background: #fff;
-  font-size: 0.75rem;
-  cursor: pointer;
-  &:hover {
-    background: #e6e6e6;
-    border: solid 1px #adadad;
-  }
-  &:active{
-    background: #d4d4d4;
-  }
-  &.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  &.no-bg{
-    background: transparent;
-    border: solid 1px transparent;
-  }
-  &.title-mar {
-    margin: 0 10px 0 20px;
-  }
-  .text{
-    margin: 0 8px 0 3px;
-  }
-}
-.moh-icon {
-  position: absolute;
-  display: block;
-  top:50%;
-  left: 4px;
-  margin-top: -8px;
-  width: 16px;
-  height: 16px;
-}
-.icon-search {
-  background: url("icon/icon_search.png") no-repeat center;
-}
-.icon-reload {
-  background: url("icon/reload.png") no-repeat center;
-}
-.icon-new-add {
-  background: url("icon/edit_add.png") no-repeat center;
-}
-.icon-updo {
-  background: url("icon/undo.png") no-repeat center;
-}
-.icon-page{
-  background: url("icon/pagination_icons.png") no-repeat;
-  &.first {}
-  &.pre {
-    background-position: -16px center;
-  }
-  &.next {
-    background-position: -32px center;
-  }
-  &.last {
-    background-position: -48px center;
-  }
-}
-
-//分隔符
-.moh-separator {
-  display: inline-block;
-  vertical-align: middle;
   height: 24px;
-  border-left: solid 1px #ccc;
-  width: 0;
+  line-height: 24px;
+  border: solid 1px #ccc;
 }
-
 /*endregion*/
+
 /*region 表格样式 m-tb*/
 .m-tb {
   width: 100%;
@@ -1363,16 +1217,16 @@ h6,.h6 {
   .tb-title {
     td {
       padding: 2px 15px;
-      height: 33px;
-      line-height: 33px;
+      height: 28px;
+      line-height: 28px;
+      color:#333;
       font-weight: bold;
       font-size: @fontSize1;
-      color: @tbTitleColor;
       text-indent: 3px;
       border-bottom: 1px solid #ddd;
       border-top-right-radius: 3px;
       border-top-left-radius: 3px;
-      background: @tbTitleBgc;
+      .background-gradient(#f5f5f5,#e8e8e8,#f5f5f5);
       a {
         color: @subColor;
       }
@@ -1406,12 +1260,12 @@ h6,.h6 {
     color: #000;
     text-align: center;
     text-decoration: none;
-    background-color: @tbHeadBgc;
+    background-color: #ffffff;
     border-bottom: 1px solid #f4f4f4;
     td {
       font-size: @fontSize1;
       vertical-align: bottom;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 2px solid #ddd;
     }
   }
 
@@ -1440,7 +1294,7 @@ h6,.h6 {
 
   //表格底部样式
   .tb-bottom {
-    background: @tbBottomBgc;
+    background: #fff;
     COLOR: #000;
     text-align: right;
     cursor: default;
@@ -1448,19 +1302,15 @@ h6,.h6 {
     text-indent: 3px;
     td {
       padding: 3px;
-      border-top: solid 1px #ddd;
     }
     .page-num {
       display: inline-block;
-      vertical-align: middle;
-      margin: 0 3px;
       padding: 0 3px;
-      width: 32px;
-      line-height: 20px;
-      height: 22px;
+      width: 38px;
+      line-height: 25px;
+      vertical-align: middle;
       text-align: center;
-      background: #fff;
-      border: solid 1px #ddd;
+      border-radius: 3px;
     }
   }
 
