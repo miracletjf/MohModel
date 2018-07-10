@@ -30,35 +30,41 @@ GenerateReportTable.prototype = {
   },
   initThFrame: function(){
     var $wrap = this.wrap;
-    var $ths = $wrap.find('thead th');
-    $ths.each(function(index){
+    this.$ths = $wrap.find('thead th');
+    
+    this.$ths.each(function(index){
       var html = $(this).html();
       $(this).html('<div class="th-box">'+html+'<i class="resize"></i></div>');
     })
   },
   bindEventListener: function(){
     var _this = this;
-    var $wrap = _this.wrap;
     _this.params.focusObj = null;
     _this.params.activeObj = null;
 
-    $wrap.on('click','.td-box',function(){ 
+    this.tdCellClick();
+    this.tdCellDblclick();
+  },
+  tdCellClick: function(){
+    var _this = this;
+    var $wrap = _this.wrap;
+    $wrap.on('click','.td-box',function(){
       _this.removeActive(this);
       $(this).addClass('active');
       if(this !== _this.params.focusObj){
         _this.endEditText(null);
       }
     })
-  
+  },
+  tdCellDblclick: function (){
+    var _this = this;
+    var $wrap = _this.wrap;
     $wrap.on('dblclick','.td-box',function(){  
       _this.endEditText(this);
       $(this).addClass('editable');
       var html = $(this).html();
       $(this).html('<textarea>'+html+'</textarea>');
     })
-  },
-  tdCellClick: function(){
-    
   },
   endEditText: function(editObj){
     var _focusObj = this.params.focusObj;
@@ -87,39 +93,48 @@ GenerateReportTable.prototype = {
     $(headTable).append($tableColGroup);
     $(headTable).append($thead);
     $tableHeadBox.append(headTable);
-  
-    this.resizeCol();
-    this.setMainTableSize();
-    this.addScrollControl();
+
+    this.resizeCol(); //调节列宽
+    this.setMainTableSize();  // 设置尺寸
+    this.addScrollControl();  // 滚动控制
   },
   resizeCol: function(){
-    var colIndex,startPos, edit, boxSize ,minSize = 100;
-    var $tableHeadCols = $('.table-box-head col');
-    var $tableMainCols = this.colsMain;
+    this.resizeBegin(); //开始调节
+    this.resizeDo();  //调节
+    this.resizeEnd(); //调节结束
+  },
+  resizeBegin: function(){
+    var _this = this;
+    var $ths = this.$ths;
     var $resizes = $('.table-box-head th .resize');
-  
+
     $resizes.on('mousedown',function(e){
-      edit = true;
-      colIndex = $resizes.index($(this));
-      boxSize = $ths.eq(colIndex).outerWidth();
-      startPos = e.pageX - boxSize;
-      console.log('down----',e)
-      console.log(colIndex);
+      _this.params.isResize = true;
+      _this.params.colIndex = $resizes.index($(this));
+      boxSize = $ths.eq(_this.params.colIndex).outerWidth();
+      _this.params.startPos = e.pageX - boxSize;
     })
-  
+  },
+  resizeDo: function(){
+    var _this = this;
+    var $tableMainCols = this.colsMain;
+    var $tableHeadCols = $('.table-box-head col');
+    var minSize = 100;
     $(document).on('mousemove',function(e){
       var size;
-      if(edit){
-        size = e.pageX - startPos;
+      if(_this.params.isResize){
+        size = e.pageX - _this.params.startPos;
         if(size >= minSize ){
-          $tableHeadCols.eq(colIndex).width(size);
-          $tableMainCols.eq(colIndex).width(size);
+          $tableHeadCols.eq(_this.params.colIndex).width(size);
+          $tableMainCols.eq(_this.params.colIndex).width(size);
         }
       }
     })
-  
+  },
+  resizeEnd: function(){
+    var _this = this;
     $(document).on('mouseup',function(e){
-      edit = false;
+      _this.params.isResize = false;
     })
   },
   setMainTableSize: function(){
