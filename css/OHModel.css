@@ -81,7 +81,6 @@ td {
   padding: 0;
   border: none;
   background: transparent;
-  font-size: 100%;
   line-height: 1.5;
   font-family: "Lucida Grande", Helvetica, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", Roboto, Arial, sans-serif;
   vertical-align: baseline;
@@ -1172,6 +1171,10 @@ input[type="button"].jump-btn {
   border: solid 1px #ccc;
 }
 /*查询*/
+.moh-search-box {
+  padding: 0 10px;
+  text-align: left;
+}
 .moh-search-box li {
   display: inline-block;
   vertical-align: middle;
@@ -1186,6 +1189,7 @@ input[type="button"].jump-btn {
   display: inline-block;
   vertical-align: middle;
   margin-right: 4px;
+  font-size: 0.8125rem;
 }
 .moh-label .field:after {
   content: ':';
@@ -1218,6 +1222,7 @@ input[type="button"].jump-btn {
   vertical-align: middle;
   line-height: 24px;
   height: 26px;
+  margin-right: 6px;
   padding: 0 0 0 24px;
   border-radius: 3px;
   border: solid 1px #dedede;
@@ -1245,6 +1250,8 @@ input[type="button"].jump-btn {
 }
 .moh-btn .text {
   margin: 0 8px 0 3px;
+  line-height: 24px;
+  font-size: 0.75rem;
 }
 .moh-icon {
   position: absolute;

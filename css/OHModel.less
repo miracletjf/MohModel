@@ -23,6 +23,8 @@
 //主题样式
 @tbTitleBgc: #337ab7;
 @tbTitleColor: #fff;
+@tbTitleBgcDe: #f8f8f8;
+@tbTitleColorDe: #333;
 @tbHeadBgc: rgb(239, 239, 239);
 @tbBottomBgc: rgb(241, 241, 241);
 @tbContentBgcHover: rgb(228, 239, 255);
@@ -91,7 +93,6 @@ audio, video, input, textarea, tr, th, td{
   padding: 0;
   border: none;
   background: transparent;
-  font-size: 100%;
   line-height: 1.5;
   font-family: "Lucida Grande",Helvetica,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",Roboto,Arial,sans-serif;
   vertical-align: baseline;
@@ -1223,6 +1224,8 @@ h6,.h6 {
 }
 /*查询*/
 .moh-search-box {
+  padding: 0 10px;
+  text-align: left;
   li {
     display: inline-block;
     vertical-align: middle;
@@ -1237,6 +1240,7 @@ h6,.h6 {
     display: inline-block;
     vertical-align: middle;
     margin-right: 4px;
+    font-size: 0.8125rem;
     &:after{
       content: ':';
       display: inline-block;
@@ -1268,6 +1272,7 @@ h6,.h6 {
   vertical-align: middle;
   line-height: 24px;
   height: 26px;
+  margin-right: 6px;
   padding: 0 0 0 24px;
   border-radius: 3px;
   border: solid 1px #dedede;
@@ -1294,6 +1299,8 @@ h6,.h6 {
   }
   .text{
     margin: 0 8px 0 3px;
+    line-height: 24px;
+    font-size: 0.75rem;
   }
 }
 .moh-icon {
