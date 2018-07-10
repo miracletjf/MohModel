@@ -16,10 +16,10 @@ GenerateReportTable.prototype = {
   init: function(){
     this.params = {};
     this.colsMain = $('.table-box-main col');
-    this.initTdFrame();
-    this.initThFrame();
-    this.bindEventListener();
-    this.freezeHeader();
+    this.initTdFrame(); //初始化td
+    this.initThFrame(); //初始化th
+    this.bindEventListener(); //绑定事件
+    this.freezeHeader();  //固定头
   },
   initTdFrame: function(){
     var $wrap = this.wrap;
@@ -29,6 +29,7 @@ GenerateReportTable.prototype = {
     })
   },
   initThFrame: function(){
+    var $wrap = this.wrap;
     var $ths = $wrap.find('thead th');
     $ths.each(function(index){
       var html = $(this).html();
@@ -42,19 +43,22 @@ GenerateReportTable.prototype = {
     _this.params.activeObj = null;
 
     $wrap.on('click','.td-box',function(){ 
-      removeActive(this);
+      _this.removeActive(this);
       $(this).addClass('active');
       if(this !== _this.params.focusObj){
-        endEditText(null);
+        _this.endEditText(null);
       }
     })
   
     $wrap.on('dblclick','.td-box',function(){  
-      endEditText(this);
+      _this.endEditText(this);
       $(this).addClass('editable');
       var html = $(this).html();
       $(this).html('<textarea>'+html+'</textarea>');
     })
+  },
+  tdCellClick: function(){
+    
   },
   endEditText: function(editObj){
     var _focusObj = this.params.focusObj;
@@ -135,7 +139,7 @@ GenerateReportTable.prototype = {
   }
 }
 
-var table = new GenerateReportTable();
+var table = new GenerateReportTable('.table-wrap');
 table.init();
 
 // var focusObj;
