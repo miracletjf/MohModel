@@ -98,7 +98,6 @@ body {
   right: -3px;
   width: 6px;
   height: 100%;
-  cursor: col-resize;
 }
 .table-wrap table tbody tr,
 .table-wrap-left table tbody tr {
