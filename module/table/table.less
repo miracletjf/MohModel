@@ -15,7 +15,27 @@ html,body{
   padding: 0;
   margin: 0;
 }
-.table-wrap { 
+.report-table {
+  position: relative;
+}
+.table-wrap-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  overflow: hidden;
+  .table-box-body {
+    overflow: hidden!important;
+  }
+  &.upper {
+    box-shadow: 1px 0 12px #9a9a9a;
+  }
+}
+.table-wrap {
+  position: relative;
+  z-index: 2;
+}
+.table-wrap,.table-wrap-left { 
   overflow: hidden;
 
   .table-box-head {
@@ -24,16 +44,20 @@ html,body{
     left: 0;
     z-index: 1;
     overflow: scroll;
+    margin-right: -17px;
+
     table {
       border-bottom: solid 1px #ddd;
       box-shadow: 0 0 3px #ddd;
     }
   }
 
-  .table-box-main {
+  .table-box-body {
     position: relative;
-    overflow: auto;
+    overflow: scroll;
     margin-top: -17px;
+    margin-right: -17px;
+
     z-index: 2;
   }
 

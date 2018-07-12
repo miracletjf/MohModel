@@ -7,37 +7,67 @@ body {
   padding: 0;
   margin: 0;
 }
-.table-wrap {
+.report-table {
+  position: relative;
+}
+.table-wrap-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
   overflow: hidden;
 }
-.table-wrap .table-box-head {
+.table-wrap-left .table-box-body {
+  overflow: hidden!important;
+}
+.table-wrap-left.upper {
+  box-shadow: 1px 0 12px #9a9a9a;
+}
+.table-wrap {
+  position: relative;
+  z-index: 2;
+}
+.table-wrap,
+.table-wrap-left {
+  overflow: hidden;
+}
+.table-wrap .table-box-head,
+.table-wrap-left .table-box-head {
   position: relative;
   top: 0;
   left: 0;
   z-index: 1;
   overflow: scroll;
+  margin-right: -17px;
 }
-.table-wrap .table-box-head table {
+.table-wrap .table-box-head table,
+.table-wrap-left .table-box-head table {
   border-bottom: solid 1px #ddd;
   box-shadow: 0 0 3px #ddd;
 }
-.table-wrap .table-box-main {
+.table-wrap .table-box-body,
+.table-wrap-left .table-box-body {
   position: relative;
-  overflow: auto;
+  overflow: scroll;
   margin-top: -17px;
+  margin-right: -17px;
   z-index: 2;
 }
-.table-wrap table {
+.table-wrap table,
+.table-wrap-left table {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
   border: solid 1px #ddd;
 }
-.table-wrap table colgroup col {
+.table-wrap table colgroup col,
+.table-wrap-left table colgroup col {
   min-width: 100px;
 }
 .table-wrap table th,
-.table-wrap table .th {
+.table-wrap-left table th,
+.table-wrap table .th,
+.table-wrap-left table .th {
   color: #777;
   font-size: 16px;
   line-height: 22px;
@@ -47,17 +77,22 @@ body {
   border: solid 1px #ddd;
 }
 .table-wrap table td,
-.table-wrap table .td {
+.table-wrap-left table td,
+.table-wrap table .td,
+.table-wrap-left table .td {
   color: #555;
 }
-.table-wrap table thead th:last-child {
+.table-wrap table thead th:last-child,
+.table-wrap-left table thead th:last-child {
   border-right: none;
 }
-.table-wrap table thead th .th-box {
+.table-wrap table thead th .th-box,
+.table-wrap-left table thead th .th-box {
   position: relative;
   padding: 2px 4px;
 }
-.table-wrap table thead th .th-box .resize {
+.table-wrap table thead th .th-box .resize,
+.table-wrap-left table thead th .th-box .resize {
   position: absolute;
   top: 0;
   right: -3px;
@@ -65,21 +100,26 @@ body {
   height: 100%;
   cursor: col-resize;
 }
-.table-wrap table tbody tr {
+.table-wrap table tbody tr,
+.table-wrap-left table tbody tr {
   background-color: #fff;
 }
-.table-wrap table tbody tr:nth-child(2n) {
+.table-wrap table tbody tr:nth-child(2n),
+.table-wrap-left table tbody tr:nth-child(2n) {
   background-color: #fafafa;
 }
-.table-wrap table tbody tr td {
+.table-wrap table tbody tr td,
+.table-wrap-left table tbody tr td {
   padding: 0;
   border-top: solid 1px #eee;
   border-right: solid 1px #eee;
 }
-.table-wrap table tbody tr td:last-child {
+.table-wrap table tbody tr td:last-child,
+.table-wrap-left table tbody tr td:last-child {
   border-right: none;
 }
-.table-wrap table tbody tr td .td-box {
+.table-wrap table tbody tr td .td-box,
+.table-wrap-left table tbody tr td .td-box {
   padding: 1px 4px;
   height: 24px;
   line-height: 24px;
@@ -89,11 +129,13 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.table-wrap table tbody tr td .td-box.active {
+.table-wrap table tbody tr td .td-box.active,
+.table-wrap-left table tbody tr td .td-box.active {
   color: #3090e4;
   background-color: rgba(48, 144, 228, 0.1);
 }
-.table-wrap table tbody tr td .td-box textarea {
+.table-wrap table tbody tr td .td-box textarea,
+.table-wrap-left table tbody tr td .td-box textarea {
   box-sizing: border-box;
   padding: 2px;
   width: 100%;
@@ -105,6 +147,7 @@ body {
   border: none;
   background: none;
 }
-.table-wrap table tbody tr td .td-box textarea:focus {
+.table-wrap table tbody tr td .td-box textarea:focus,
+.table-wrap-left table tbody tr td .td-box textarea:focus {
   outline: none;
 }
