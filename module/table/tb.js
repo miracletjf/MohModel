@@ -83,27 +83,32 @@ GenerateReportTable.prototype = {
     this.addScrollControl();  // 滚动控制
   },
   createHeaderFreezeTable: function(){
-    var $tableHeadBox = $('<div class="table-box-head"></div>').prependTo($('.table-wrap'));
-    var $headTable = $('<table></table>');
+    this.view.tableHeadBox = $('<div class="table-box-head"></div>').prependTo($('.table-wrap'));
+    this.view.headTable = $('<table></table>');
     var $tableColGroup = $('.table-box-body table colgroup').clone();
     var $thead = $('.table-box-body table thead');
 
-    $headTable.append($tableColGroup);
-    $headTable.append($thead);
-    $tableHeadBox.append($headTable);
+    this.view.headTable.append($tableColGroup);
+    this.view.headTable.append($thead);
+    this.view.tableHeadBox.append(this.view.headTable);
   },
   freezeLefte: function(){
-    var $tableLeftWrap = $('<div class="table-wrap-left">').prependTo($('.report-table'));
-    var leftWrapHead = this.view.wrap.find('.table-box-head').clone();
-    var leftWrapBody = this.view.wrap.find('.table-box-body').clone();
-    $tableLeftWrap.append(leftWrapHead);
-    $tableLeftWrap.append(leftWrapBody);
-    $tableLeftWrap.find('table').width(this.view.wrap.find('table').width());
-    $tableLeftWrap.width($('.table-box-head thead th').eq(0).outerWidth());
-    $tableLeftWrap.height(this.size.wrapHeight);
-    $tableLeftWrap.find('.table-box-body').height(
-      this.size.wrapHeight - $tableLeftWrap.find('.table-box-head').height()
+    
+    createHeaderFreezeTable();
+
+    this.view.tableLeftWrap.find('table').width(this.view.wrap.find('table').width());
+    this.view.tableLeftWrap.width(this.view.ths.eq(0).outerWidth());
+    this.view.tableLeftWrap.height(this.size.wrapHeight);
+    this.view.leftWrapBody.height(
+      this.size.wrapHeight - this.view.leftWrapHead.height()
     );
+  },
+  createHeaderFreezeTable: function(){
+    this.view.tableLeftWrap = $('<div class="table-wrap-left">').prependTo($('.report-table'));
+    this.view.leftWrapHead = this.view.wrap.find('.table-box-head').clone();
+    this.view.leftWrapBody = this.view.wrap.find('.table-box-body').clone();
+    this.view.tableLeftWrap.append(this.view.leftWrapHead);
+    this.view.tableLeftWrap.append(this.view.leftWrapBody);
   },
   resizeCol: function(){
     this.view.resizes = this.view.wrap.find('.table-box-head th .resize');
@@ -145,11 +150,11 @@ GenerateReportTable.prototype = {
     $('.report-table').height(this.size.wrapHeight);
     $('.table-box-body').height(this.size.wrapHeight - headHeight - 2);
   },
-  addScrollControl: function(){
-    var $headTable = $('.table-box-head')
+  addScrollControl: function(){ 
+    var _this = this;
     $('.table-box-body').on('scroll',function(e){
-      $headTable.scrollLeft($(this).scrollLeft());
-      if(($headTable).scrollLeft() > 0){
+      _this.view.tableHeadBox.scrollLeft($(this).scrollLeft());
+      if((_this.view.tableHeadBox).scrollLeft() > 0){
         $('.table-wrap-left').addClass('upper');
       }else{
         $('.table-wrap-left').removeClass('upper');
